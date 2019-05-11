@@ -1,0 +1,254 @@
+/* pages/mine/orderdetails/orderdetails.wxss */
+page{
+  background: #f6f7fb;
+  color: #2e2c2d;
+}
+.order-tt-img{
+  width: 100%;
+  height: auto;
+}
+
+.order-main-wrap{
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.order-info{
+  position: relative;
+  padding: 20rpx;
+  padding-left: 230rpx;
+  padding-right: 20rpx;
+  min-height: 190rpx;
+  box-sizing: border-box;
+}
+.order-img{
+  width: 160rpx;
+  max-height: 150rpx;
+  overflow: hidden;
+  position: absolute;
+  left: 50rpx;
+  top: 20rpx;
+  background: #f1f1f1;
+}
+.order-img image{
+  width: 100%;
+  height: 150rpx;
+}
+.order-info-t{
+  display: block;
+  font-size: 33rpx;
+  color: #2e2c2d;
+  font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
+.order-info-main{
+  font-size: 26rpx;
+  color: #323232;
+  margin: 10rpx 0;
+}
+.order-money{
+  font-size: 34rpx;
+  /* font-weight: bold; */
+  color: #1e1c1d;
+}
+.order-money .order-yf{
+  float:right;
+  font-size:24rpx;
+  line-height: 44rpx;
+}
+
+.order-address-wrap{
+  padding-left: 70rpx;
+  margin-top: 40rpx;
+  padding-bottom: 30rpx;
+}
+.order-margin-top{
+  margin-top: 0rpx;
+}
+.order-address{
+  border-top: 1rpx solid #f7f7f7;
+  position: relative;
+  font-size: 30rpx;
+  padding-right: 50rpx;
+}
+.order-address-icon{
+  position: absolute;
+  left: -46rpx;
+  top: 26rpx;
+}
+.order-address-icon image{
+  width: 26rpx;
+}
+.order-name{
+  padding: 20rpx 0 14rpx 0;
+  font-weight: bold;
+}
+.order-address-s{
+  font-size: 30rpx;
+}
+
+.order-number-wrap{
+  padding-bottom: 0;
+}
+.order-number-wrap .order-address{
+  padding: 15rpx 0;
+  padding-right: 40rpx;
+}
+.order-number-wrap .order-address view{
+  padding: 10rpx 0;
+}
+.order-num-t text{
+  color: #7a7a7a;
+}
+.order-g-time{
+  font-size: 30rpx;
+}
+.order-g-time text{
+  color: #a2a0a1;
+  font-size: 28rpx;
+}
+
+.order-allmoney text{
+  float: right;
+  color: #000;
+  font-size: 32rpx;
+}
+.order-s-money{
+  text-align: right;
+}
+.order-s-money text{
+  color: #bd0a05;
+  font-size: 34rpx;
+  margin-left: 10rpx;
+}
+.order-main-box{
+  padding-bottom: 120rpx;
+}
+
+.footer-btn{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+}
+.footer-btn view{
+  width: 50%;
+  display: inline-block;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #afafaf;
+}
+.footer-btn .order-now-pay{
+  background: #ff2840;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+
+/* 选择地址 */
+.choiceStore-wrap{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  padding: 50rpx;
+}
+.choicebackground{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+}
+.store-box{
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.coll_top{
+  background: #fff;
+  position: relative;
+  padding: 40rpx;
+  margin-bottom: 20rpx;
+}
+.coll_top_left{
+  display: inline-block;
+  color: #2e2d2d;
+  font-size: 30rpx;
+  position: relative;
+  padding-left: 50rpx;
+  /* padding-right: 100rpx; */
+}
+.coll_top_left image{
+  width:40rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+
+.coll_top_right{
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+.coll_color{
+  color: #cd1b1b;
+}
+.coll_top_right .right_arrow{
+  margin-left: 10rpx;
+}
+
+.store-box{
+  height: 96%;
+  overflow: hidden;
+  position: relative;
+  overflow-y: scroll;
+}
+.coll_list{
+  margin-bottom: 0;
+  border-bottom: 1px solid #f5f8fa;
+}
+.coll_img_box{
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 10rpx;
+}
+.coll_img_box image{
+  width: 80rpx;
+  margin: 0 auto;
+}
+.coll_text_box{
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 20rpx;
+}
+.coll_text_weight{
+  font-weight: bold;
+}
+.coll_text_box .coll_text_tip{
+  font-size: 24rpx;
+  color: #a2a0a0;
+  margin-top: 10rpx;
+}
+.coll_text_right{
+  top: 40%;
+  color: #a2a0a0;
+}

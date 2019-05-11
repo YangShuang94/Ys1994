@@ -1,0 +1,143 @@
+<!--pages/mine/mine.wxml-->
+<view class="userInfor">
+  <view wx:if="{{!token}}"  class='userHead' bindtap='login'>
+    <view class='userHead-pic'>
+      <image mode="widthFix" src='../../image/mine-h.png'></image>
+    </view>
+    <view class='userHead-name'>
+      请点击登录
+    </view>
+  </view>
+  
+  <view wx:else class='userHead'>
+    <view class='userHead-pic'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class='userHead-name'>
+      <open-data class="headname" type="userNickName" lang="zh_CN"></open-data>
+    </view>
+  </view>
+
+  <view class="content">
+
+    <view class='order-nav-wrap'>
+      <view class="order">
+        <navigator url="/pages/mine/orderall/orderall?type=1" hover-class="address-hover">
+          商品订单
+          <view class='checkmore'>查看全部<text class='right_arrow'></text></view>
+        </navigator>
+      </view>
+      <view class="section index-nav">
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/orderall/orderall?type=1" hover-class="address-hover">
+            <image src="../../image/mine_01.png" class="slide-image" />
+            <view class='ordernav'>全部订单</view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/orderall/orderall?type=2" hover-class="address-hover">
+            <image src="../../image/mine_02.png" class="slide-image" />
+            <view class='ordernav'>待付款
+              <font class="{{usercentInfo.length == 0 ? 'none' : ''}} myordernum" wx:if="{{usercentInfo.PendingPaymentOrders != 0}}">{{usercentInfo.PendingPaymentOrders}}</font>
+            </view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/orderall/orderall?type=3" hover-class="address-hover">
+            <image src="../../image/mine_03.png" class="slide-image" />
+            <view class='ordernav'>待收货</view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/orderall/orderall?type=4" hover-class="address-hover">
+            <image src="../../image/mine_04.png" class="slide-image" />
+            <view class='ordernav'>已完成</view>
+            </navigator>
+          </view>
+      </view>
+    </view>
+
+    <view class='order-nav-wrap'>
+      <view class="order">
+        <navigator url="/pages/mine/serviceorderall/serviceorderall?type=1" hover-class="address-hover">
+          服务订单
+          <view class='checkmore'>查看全部<text class='right_arrow'></text></view>
+        </navigator>
+      </view>
+      <view class="section index-nav">
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/serviceorderall/serviceorderall?type=1" hover-class="address-hover">
+            <image src="../../image/mine_011.png" class="slide-image" />
+            <view class='ordernav'>全部订单</view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/serviceorderall/serviceorderall?type=2" hover-class="address-hover">
+            <image src="../../image/mine_012.png" class="slide-image" />
+            <view class='ordernav'>待付款
+              <font class="{{usercentInfo.length == 0 ? 'none' : ''}} myordernum" wx:if="{{usercentInfo.PendingPaymentServiceOrders != 0}}">{{usercentInfo.PendingPaymentServiceOrders}}</font>
+            </view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/serviceorderall/serviceorderall?type=3" hover-class="address-hover">
+            <image src="../../image/mine_013.png" class="slide-image" />
+            <view class='ordernav'>服务中</view>
+            </navigator>
+          </view>
+          <view class="l-c-c" catchtap="go" data-type="">
+            <navigator url="/pages/mine/serviceorderall/serviceorderall?type=4" hover-class="address-hover">
+            <image src="../../image/mine_014.png" class="slide-image" />
+            <view class='ordernav'>已完成</view>
+            </navigator>
+          </view>
+      </view>
+    </view>
+
+    <view class='mine-list-wrap'>
+      <navigator url="/pages/mine/address/address" hover-class="address-hover">    
+        <view class='mine-list'>
+          <image src="../../image/mine_05.png" />
+          <text class="b-text">收货地址</text>
+          <view class="b-right"><text class='right_arrow'></text> </view>
+        </view>
+      </navigator>
+      <navigator url="/pages/mine/sharemoney/sharemoney?title=navigate" wx:if="{{isAgent == true}}" hover-class="navigator-hover">
+      <view class='mine-list'>
+        <image src="../../image/mine_06.png" />
+        <text class="b-text">分享赚钱</text>
+        <view class="b-right">已赚取{{usercentInfo.TotalCommissionAmount}}元<text class='right_arrow'></text> </view>
+      </view>
+      </navigator>
+      <navigator url="/pages/mine/serviceorder/serviceorder?type=1" hover-class="navigator-hover" wx:if="{{isWorker == true}}">
+      <view class='mine-list'>
+        <image src="../../image/mine_11.png" />
+        <text class="b-text">我的工作</text>
+        <view class="b-right"><font class="{{usercentInfo.length == 0 ? 'none' : ''}} mywork" wx:if="{{usercentInfo.NewWorks != 0}}">{{usercentInfo.NewWorks}}</font><text class='right_arrow'></text> </view>
+      </view>
+      </navigator>
+      <navigator url="/pages/mine/collection/collection?title=navigate" hover-class="navigator-hover">
+        <view class='mine-list'>
+          <image src="../../image/mine_07.png" />
+          <text class="b-text">收藏店铺</text>
+          <view class="b-right"><text class='right_arrow'></text> </view>
+        </view>
+      </navigator>
+      <navigator url="/pages/mine/nearbyshops/nearbyshops?title=navigate" hover-class="navigator-hover">
+        <view class='mine-list'>
+          <image src="../../image/mine_08.png" />
+          <text class="b-text">发现附近</text>
+          <view class="b-right"><text class='right_arrow'></text> </view>
+        </view>
+      </navigator>
+      <navigator url="/pages/mine/sharemakmoney/sharemakmoney?title=navigate" wx:if="{{isAgent == false}}" hover-class="navigator-hover">
+      <view class='mine-list'>
+        <image src="../../image/mine_09.png" />
+        <text class="b-text">我有好货卖</text>
+        <view class="b-right">发掘社区商机，立即赚钱<text class='right_arrow'></text> </view>
+      </view>
+      </navigator>
+    </view>
+
+  </view>
+</view>

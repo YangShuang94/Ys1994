@@ -1,0 +1,79 @@
+<!--pages/mine/orderdetails/orderdetails.wxml-->
+<view class='orderD-head'><image mode='widthFix' src="../../../image/ordericon.png" class="order-tt-img" />
+  <view class='orderD-statusname'>{{orderDetails.OrderStatusName}}</view>
+</view>
+
+<view class='order-main-box'>
+  <view class='order-main-wrap'>
+    <view class='order-info'>
+      <view class='order-img'><image mode="aspectFill" src='{{orderDetails.CoverImage}}'></image></view>
+      <text class='order-info-t'>{{orderDetails.Title}}</text>
+      <view class='order-info-main'>{{orderDetails.SubTitle}}</view>
+      <!-- <view class='order-money'>￥45.00</view> -->
+    </view>
+    <view class='order-address-wrap' style='padding-left:70rpx;'>
+      <view class='order-address'>
+        <view class='order-address-s'><text>联系人：</text>{{orderDetails.Contact}}</view>
+        <view class='order-address-s'><text>电话：</text>{{orderDetails.ContactPhone}}</view>
+        <view class='order-address-s'><text>楼栋地址：</text>{{orderDetails.Address}}</view>
+        <!-- <view class='order-address-s'><text>备注：</text>{{orderDetails.Remark}}</view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <view class='order-address'>
+        <view class='order-num-t'>订单编号：<text>{{orderDetails.OrderCode}}</text></view>
+        <view class='order-g-time'>下单时间：<text>{{orderDetails.CreateDateStr}}</text></view>
+      </view>
+      <view class='order-address'>
+        <view class='order-g-time'>支付方式：<text>在线支付</text></view>
+      </view>
+      <view class='order-address'>
+        <view class='order-g-time'>订单状态：<text>{{orderDetails.OrderStatusName}}</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='order-main-wrap' wx:if="{{orderDetails.OrderStatus == 50 || orderDetails.OrderStatus == 80 || orderDetails.OrderStatus == 90}}">
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <view class='order-address'>
+        <view class='order-num-t'>工人：<text>{{orderDetails.WorkerName}}</text></view>
+        <view class='order-g-time'>接单时间：<text>{{orderDetails.ProcessDateStr}}</text></view>
+      </view>
+    </view>
+  </view>
+  
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <view class='order-address'>
+        <view class='order-num-t order-allmoney'>上门费<text>￥{{orderDetails.FirstAmount}}</text></view>
+        <view class='order-g-time order-allmoney'>服务费<text>￥{{orderDetails.SecondAmount}}</text></view>
+      </view>
+
+      <view class='order-address' wx:if="{{orderDetails.OrderStatus == 10 || orderDetails.OrderStatus == 14}}">
+        <view class='order-s-money'>应付款<text>￥{{orderDetails.FirstAmount}}</text></view>
+      </view>
+      <view class='order-address' wx:elif="{{orderDetails.OrderStatus == 50 || orderDetails.OrderStatus == 80}}">
+        <view class='order-s-money'>应付款<text>￥{{orderDetails.SecondAmount}}</text></view>
+      </view>
+      <view class='order-address' wx:else>
+        <view class='order-s-money'>订单金额<text>￥{{orderDetails.FirstAmount+orderDetails.SecondAmount}}</text></view>
+      </view>
+
+    </view>
+  </view> 
+</view>
+
+<!-- 订单支付 -->
+<view class='footer-btn' wx:if="{{orderDetails.OrderStatus == 10 || orderDetails.OrderStatus == 14}}">
+  <view bindtap='orderCancel'>取消订单</view>
+  <view class='order-now-pay' bindtap='orderPay'>立即支付</view>
+</view>
+<!-- 服务费支付 -->
+<view class='footer-btn' wx:elif="{{orderDetails.OrderStatus == 50 || orderDetails.OrderStatus == 80}}">
+  <!-- <view bindtap='orderCancel' wx:if="">取消订单</view> -->
+  <view class='order-now-pay' style='width:100%;' bindtap='orderservicePay'>支付服务费</view>
+</view>

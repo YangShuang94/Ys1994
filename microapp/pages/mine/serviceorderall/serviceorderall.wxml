@@ -1,0 +1,89 @@
+<!-- pages/mine/orderall/orderall.wxml -->
+<view class='order-head-nav'>
+  <view class='order-nav {{ordertyped == 1 ? "navactive" : ""}}' data-type='1' bindtap='choiceTypeOrder'>
+    全部
+  </view>
+  <view class='order-nav {{ordertyped == 2 ? "navactive" : ""}}' data-type='2' bindtap='choiceTypeOrder'>
+    待付款
+    <text class='nav-num' wx:if="{{pendingPaymentServiceOrders != 0}}">
+      {{pendingPaymentServiceOrders}}
+    </text>
+  </view>
+  <view class='order-nav {{ordertyped == 3 ? "navactive" : ""}}' data-type='3' bindtap='choiceTypeOrder'>
+    服务中
+  </view>
+  <view class='order-nav {{ordertyped == 4 ? "navactive" : ""}}' data-type='4' bindtap='choiceTypeOrder'>
+    已完成
+  </view>
+</view>
+<view class='cont'>
+  <scroll-view scroll-y='true' lower-threshold="0" bindscrolltolower='nScrollLower'>
+    <view class='order-list-box' wx:for="{{orderList}}" data-id="{{index}}" wx:key="{{index}}" wx:for-item="v">
+      <view class='order-time'>
+        {{v.CreateDateStr}}
+        <text>{{v.OrderStatusName}}</text>
+      </view>
+
+      <navigator url="/pages/mine/orderSerdetails/orderSerdetails?id={{v.Id}}&type={{ordertyped}}" hover-class="navigator-hover">
+        <view class='order-info'>
+          <view class='order-img'>
+            <image mode="aspectFill" src='{{v.CoverImage}}'></image>
+          </view>
+          <text class='order-info-t'>{{v.Title}}</text>
+          <view class='order-info-main'>
+            <view>￥{{v.FirstAmount}}</view>
+            <view class='order-total'>x{{v.Count}}</view>
+          </view>
+        </view>
+      </navigator>
+      
+      <!-- <view class='order-get-time'>于{{v.ProcessDate}} 发货</view> -->
+      <view class='order-get-time'></view>
+      <view class='order-money'>
+        <view class='order-m-n' wx:if="{{v.OrderStatus == 10 || v.OrderStatus == 14}}">
+          共{{v.Count}}件 应付总额:
+          <text>￥{{v.FirstAmount}}</text>
+        </view>
+        <view class='order-m-n' wx:elif="{{v.OrderStatus == 50 || v.OrderStatus == 80}}">
+          共{{v.Count}}件 应付总额:
+          <text>￥{{v.SecondAmount}}</text>
+        </view>
+        <view class='order-m-n' wx:else>
+          共{{v.Count}}件 订单金额:
+          <text>￥{{v.FirstAmount}}</text>
+        </view>
+        <!-- 待付款状态 -->
+        <view class='order-btn-box' wx:if="{{v.OrderStatus == 10 || v.OrderStatus == 14}}">
+          <view class='order-btn'>
+            <navigator url="/pages/mine/orderSerdetails/orderSerdetails?id={{v.Id}}&type={{ordertyped}}" hover-class="navigator-hover">
+              <text class=''>查看详情</text>
+            </navigator>
+          </view>
+          <text class='order-btn' data-id="{{v.Id}}" bindtap='orderCancel'>取消订单</text>
+          <text class='order-btn order-btn-red' data-id="{{v.Id}}" bindtap='orderPay'>立即付款</text>
+        </view>
+        <!-- 服务中状态 -->
+        <view class='order-btn-box' wx:elif="{{v.OrderStatus == 50 || v.OrderStatus == 80}}">
+          <view class='order-btn'>
+            <navigator url="/pages/mine/orderSerdetails/orderSerdetails?id={{v.Id}}&type={{ordertyped}}" hover-class="navigator-hover">
+              <text class=''>查看详情</text>
+            </navigator>
+          </view>
+          <text class='order-btn order-btn-red' data-id="{{v.Id}}" bindtap='orderservicePay'>
+            立即付款
+          </text>
+        </view>
+        <!-- 付款中 和 已付款状态只显示查看详情 -->
+        <view class='order-btn-box' wx:else>
+          <view class='order-btn'>
+            <navigator url="/pages/mine/orderSerdetails/orderSerdetails?id={{v.Id}}&type={{ordertyped}}" hover-class="navigator-hover">
+              <text class=''>查看详情</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="loading" hidden="{{nLoading}}">正在加载更多...</view>
+    <view class="loading complete" hidden="{{nLoadingComplete}}">{{loadingsucctext}}</view>
+  </scroll-view>
+</view>

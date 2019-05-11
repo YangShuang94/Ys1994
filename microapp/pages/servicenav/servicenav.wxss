@@ -1,0 +1,91 @@
+/* pages/servicenav/servicenav.wxss */
+page{
+  background: #f5f8fa;
+}
+image{
+  width: 100%;
+}
+.ser_nav_list_box{
+  padding: 20rpx;
+  padding-top: 26rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.ser_nav_list_w{
+  position: relative;
+  padding-left: 220rpx;
+}
+.ser_nav_img{
+  width: 200rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius:14rpx;
+}
+.ser_nav_img image{
+  border-radius: 14rpx;
+}
+.ser_nav_title{
+  font-size: 30rpx;
+  color: #4c4c4c;
+  line-height: 50rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  margin-bottom: 5rpx;
+  position: relative;
+  padding-right: 80rpx;
+}
+.ser_nav_zy{
+  position: absolute;
+  right: 0;
+  top: 8rpx;
+  background: #e23239;
+  border-radius: 6rpx;
+  display: block;
+  padding: 0rpx 10rpx;
+  z-index: 99;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: normal;
+  line-height: 30rpx;
+}
+.ser_nav_main{
+  color: #898989;
+  font-size: 28rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  margin-bottom: 10rpx;
+}
+.ser_nav_money{
+  color: #e23239;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.ser_nav_money text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.ser_nav_address{
+  border-top: 1px dashed #bbbbbb;
+  padding-top: 16rpx;
+  line-height: 30rpx;
+}
+.in_block_address{
+  color: #8d8b8b;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  display: inline-block;
+}
+.in_block_address image{
+  width: 26rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+  margin-top: -3rpx;
+}
+.ser_nav_ys{
+  float: right;
+  color: #8d8b8b;
+}

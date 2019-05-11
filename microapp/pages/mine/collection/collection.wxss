@@ -1,0 +1,95 @@
+/* pages/mine/collection/collection.wxss */
+page{
+  background: #f5f8fa;
+}
+.coll_top{
+  background: #fff;
+  position: relative;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.coll_top_left{
+  /* display: inline-block; */
+  color: #2e2d2d;
+  font-size: 30rpx;
+}
+.coll_top_left image{
+  width:50rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+
+.coll_top_right{
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+.coll_color{
+  color: #cd1b1b;
+}
+.coll_top_right .right_arrow{
+  margin-left: 10rpx;
+}
+
+
+.coll_list{
+  margin-bottom: 0;
+  border-bottom: 1px solid #f5f8fa;
+  padding-left: 170rpx;
+  padding-right: 230rpx;
+  min-height: 130rpx;
+}
+.coll_img_box{
+  width: 130rpx;
+  height: 130rpx;
+  line-height: 130rpx;
+  border-radius: 50%;
+  background: #f5f8fa;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+}
+.coll_img_box image{
+  width: 80rpx;
+  height: auto;
+  margin: 0 auto;
+}
+.coll_text_box{
+  /* width: 45% */
+  /* display: inline-block; */
+  width: 100%;
+  vertical-align: middle;
+  /* padding-left: 20rpx; */
+  margin-top: 20rpx;
+  box-sizing: border-box;
+}
+.coll_text_weight{
+  width: 100%;
+  font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
+.coll_text_box .coll_text_tip{
+  width: 100%;
+  font-size: 24rpx;
+  color: #a2a0a0;
+  margin-top: 10rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
+.coll_text_right{
+  top: 40%;
+  color: #a2a0a0;
+}
+
+.cont scroll-view{
+  padding-top: 100rpx;
+}

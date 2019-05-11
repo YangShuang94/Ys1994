@@ -1,0 +1,169 @@
+/* pages/mine/orderdetails/orderdetails.wxss */
+page{
+  background: #f6f7fb;
+  color: #2e2c2d;
+}
+
+.orderD-head{
+  position: relative;
+}
+.orderD-statusname{
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 70rpx;
+}
+.order-tt-img{
+  width: 100%;
+  height: auto;
+}
+
+.order-main-wrap{
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.order-info{
+  position: relative;
+  padding: 20rpx;
+  padding-left: 230rpx;
+  padding-right: 20rpx;
+  min-height: 190rpx;
+  box-sizing: border-box;
+}
+.order-img{
+  width: 160rpx;
+  max-height: 150rpx;
+  overflow: hidden;
+  position: absolute;
+  left: 50rpx;
+  top: 20rpx;
+}
+.order-img image{
+  width: 160rpx;
+  height: 150rpx;
+}
+.order-info-t{
+  display: block;
+  font-size: 33rpx;
+  color: #2e2c2d;
+  font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
+.order-info-main{
+  font-size: 26rpx;
+  color: #323232;
+  margin: 10rpx 0;
+}
+.order-money{
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #c27099;
+}
+
+.order-address-wrap{
+  padding-left: 70rpx;
+  margin-top: 40rpx;
+  padding-bottom: 30rpx;
+}
+.order-margin-top{
+  margin-top: 0rpx;
+}
+.order-address{
+  border-top: 1rpx solid #f7f7f7;
+  position: relative;
+  font-size: 30rpx;
+  padding-right: 50rpx;
+
+}
+.order-address-icon{
+  position: absolute;
+  left: -36rpx;
+  top: 26rpx;
+}
+.order-address-icon image{
+  width: 26rpx;
+}
+.order-name{
+  padding: 20rpx 0 14rpx 0;
+  font-weight: bold;
+}
+.order-address-s{
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  color: #666;
+}
+.order-address-s text{
+  width: 150rpx;
+  text-align: right;
+  display: inline-block;
+  color: #2e2c2d;
+  font-size: 30rpx;
+}
+
+.order-number-wrap{
+  padding-bottom: 0;
+}
+.order-number-wrap .order-address{
+  padding: 15rpx 0;
+  padding-right: 40rpx;
+}
+.order-number-wrap .order-address view{
+  padding: 10rpx 0;
+}
+.order-num-t text{
+  color: #7a7a7a;
+}
+.order-g-time{
+  font-size: 30rpx;
+}
+.order-g-time text{
+  color: #a2a0a1;
+  font-size: 28rpx;
+}
+
+.order-allmoney text{
+  float: right;
+  color: #000;
+  font-size: 32rpx;
+}
+.order-s-money{
+  text-align: right;
+}
+.order-s-money text{
+  color: #bd0a05;
+  font-size: 34rpx;
+  margin-left: 10rpx;
+}
+.order-main-box{
+  padding-bottom: 120rpx;
+}
+
+.footer-btn{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+}
+.footer-btn view{
+  width: 50%;
+  display: inline-block;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #afafaf;
+}
+.footer-btn .order-now-pay{
+  background: #ff2840;
+  color: #fff;
+  font-size: 36rpx;
+}

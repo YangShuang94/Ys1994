@@ -1,0 +1,27 @@
+<!--pages/login/loginforpsd/loginforpsd.wxml-->
+<!--pages/login/register/register.wxml-->
+<view class='view-wrap'>
+  <view class='view-inp-box'>
+    <input type="text" placeholder="请输入手机号" placeholder-class="placeholder" bindinput="inputTitle" />
+  </view>
+  <view class='view-inp-box'>
+    <input type="text" placeholder="请输入密码" placeholder-class="placeholder" bindinput="inputTitle" />
+  </view>
+
+
+  <button class='now-login' bindtap="save">立即登录</button>
+
+  <view class='view-other-login'>
+    <view class='vie-other-left'>
+      <navigator url="/pages/login/loginformsg/loginformsg?title=navigate" hover-class="navigator-hover">
+        使用短信登录
+      </navigator>
+    </view>
+    <view class='view-other-right'>
+      <navigator url="/pages/login/register/register?title=navigate" hover-class="navigator-hover">
+        注册
+      </navigator>
+    </view>
+  </view>
+</view>
+

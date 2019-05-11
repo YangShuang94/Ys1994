@@ -1,0 +1,49 @@
+<!--pages/servicenav/servicenav.wxml-->
+<view class='cont'>
+  <scroll-view scroll-y='true' lower-threshold="0" bindscrolltolower='nScrollLower'>
+    <view class='ser_nav_list_box' wx:for="{{list}}" wx:key="k" wx:for-item="v">
+
+      <navigator url="/pages/servicedetails/servicedetails?id={{v.Id}}" hover-class="navigator-hover">
+      <view class='ser_nav_list_w'>  
+        <view class='ser_nav_img'><image mode="widthFix" src="{{v.PicUrl}}"></image></view>
+        <view>
+          <view class='ser_nav_title'>{{v.Title}}
+            <!-- <text class='ser_nav_zy'>自营</text> -->
+          </view>
+          <view class='ser_nav_main'>{{v.SubTitle}}</view>
+          <view class='ser_nav_money'><text>{{v.Price}}</text>元</view>
+          <view class='ser_nav_address'>
+            <view class='in_block_address'><image mode='widthFix' src='../../image/shop.png'></image>{{v.ProviderName}}</view>
+            <!-- <text class='ser_nav_ys'>已售0</text> -->
+          </view>
+        </view>
+      </view>
+      </navigator>
+
+    </view>
+
+
+    <view class="loading" hidden="{{nLoading}}">正在加载更多...</view>  
+    <view class="loading complete" hidden="{{nLoadingComplete}}">
+      {{loadingsucctext}}
+    </view> 
+
+  </scroll-view>
+</view>
+
+    <!-- <view class='nullview' wx:if="{{list.length <= 0}}">暂无服务列表...</view> -->
+
+<!-- <view class='ser_nav_list_box'>
+  <view class='ser_nav_list_w'>  
+    <view class='ser_nav_img'><image mode="widthFix" src="../../image/img.png"></image></view>
+    <view>
+      <view class='ser_nav_title'>洗衣机维修<text class='ser_nav_zy'>自营</text></view>
+      <view class='ser_nav_main'>1、工程师s行们数据分类的减少浪费劳动分局领导是解放螺丝钉解放了六点十分家里的事</view>
+      <view class='ser_nav_money'><text>30</text>元/次</view>
+      <view class='ser_nav_address'>
+        <view class='in_block_address'><image mode='widthFix' src='../../image/shop.png'></image>龙湖物业</view>
+        <text class='ser_nav_ys'>已售0</text>
+      </view>
+    </view>
+  </view>
+</view> -->

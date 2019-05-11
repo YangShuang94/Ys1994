@@ -1,0 +1,203 @@
+<!--pages/serviceshopcart/serviceshopcart.wxml-->
+<view>
+  <view class="group border-site mt-m">
+	<view class="opt-row">
+      <text>  联系人：</text>
+      <input type='text' bindinput="nameInput" />
+    </view>
+    <view class="opt-row">
+      <text>联系电话：</text>
+      <input type='number' bindinput="phoneInput" />
+    </view>
+	<view class="opt-row">
+      <text>楼栋地址：</text>
+      <input type='text' bindinput="addressInput" />
+    </view>
+  </view>
+  <view class='opt-row'>
+    服务时间：
+    <picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">{{startDate}}</picker>
+  </view>
+
+
+  <view class="group">
+    <!-- 商品item open -->
+    <view class="goods">
+
+      <view class="goods-item">
+
+        <view class="goods-img">
+          <image src="{{serviceDetails.BannerPics[0]}}"></image>
+        </view>
+        <view class="goods-info">
+          <view class="name a-line_hide">{{serviceDetails.Title}}</view>
+          <view class="sku"></view>
+          <view class="line flex">
+            <view class="flex-item col-red">
+              ¥
+              <text>{{serviceDetails.Price}}</text>
+            </view>
+            <view class="stepper">
+              <text class="{{minusStatus}}" bindtap="bindMinus">-</text>
+              <input type="number" bindchange="bindManual" value="{{num}}" />
+              <text class="normal" bindtap="bindPlus">+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 商品item end -->
+  </view>
+
+  <view class="group">
+
+    <!-- <view class="opt-row">
+      <view class="opt-row_hd">支付方式：</view>
+      <view class="opt-row_bd">
+        <picker bindchange="bindPickerPay" value="{{arrayItem}}" range="{{array}}">
+          <view class="weui-input">
+            <icon class="fa i-wx-pay col-green"></icon>{{array[arrayItem]}}
+            <text class="fa i-opt"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="opt-row" bindtap='showBuyModal'>
+      <view class="opt-row_hd">发票：</view>
+      <view class="opt-row_bd">本次不开具发票</view>
+      <view class="opt-row_ft fa i-opt"></view>
+    </view> -->
+
+    <view class="opt-row">
+      <view class="opt-row_hd">代金券：</view>
+      <view class="opt-row_bd">
+        <picker bindchange="bindPickerExpress" value="{{expressItem}}" range="{{express}}">
+          <view class="weui-input">{{express[expressItem]}}
+            <text class="fa i-opt"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="opt-row">
+      <text>备注：</text>
+      <input type='number' bindinput="nameInput"/>
+    </view>
+
+  </view>
+
+
+
+  <view class="group">
+
+    <view class="opt-row">
+      <view class="opt-row_hd">服务金额：</view>
+      <view class="opt-row_bd">
+        <text class="col-red">{{serviceDetails.Price * num}}元</text>
+      </view>
+    </view>
+
+    <!-- <view class="opt-row">
+      <view class="opt-row_hd">运费
+        <text class="col-lgrey">（总重：0.185kg）</text>
+      </view>
+      <view class="opt-row_bd">
+        <text class="col-red">¥ 0.00</text>
+      </view>
+    </view>
+    <view class="opt-row">
+      <view class="opt-row_bd">
+        总价：
+        <text class="col-red">¥ 199.00</text>
+      </view>
+    </view> -->
+
+  </view>
+
+
+  <view class="fixBar">
+
+    <view class="flex balance">
+
+      <view class="flex-item text-right">
+        <view class="pool">共 {{num}} 件，合计：
+          <text class="col-red">{{serviceDetails.Price * num}}元</text>
+        </view>
+      </view>
+      <view class="btnbar">
+        <!-- <button class="btn btn-red">
+					去结算<text>(1件)</text>
+				</button> -->
+
+        <view bindtap="pay" class="btn btn-red">
+          去结算
+          <text>({{num}}件)</text>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- 弹窗open -->
+  <view class="cover-screen" bindtap="hideBuyModal" wx:if="{{showModalStatus}}"></view>
+
+  <view animation="{{animationData}}" class="buy-box" wx:if="{{showModalStatus}}">
+
+    <view class="pop-invoice">
+
+      <view class="pop-bartit">开具发票</view>
+
+      <view class="pop-smtit">发票类型</view>
+
+      <view class="pop-opt">
+        <label class="pop-opt_btn active">电子普通发票</label>
+        <label class="pop-opt_btn">增值税专用发票</label>
+      </view>
+
+      <view class="pop-note">电子普通发票与纸质普通发票具备同等法律效力，可支持报销入账</view>
+
+      <view class="pop-smtit">发票抬头</view>
+
+      <view class="pop-opt">
+        <label class="pop-opt_btn">个人</label>
+        <label class="pop-opt_btn active">单位</label>
+      </view>
+
+      <view class="pop-input">
+        <input placeholder-style="color:#999" placeholder="" value="张三" />
+      </view>
+
+      <view class="pop-input">
+        <input placeholder-style="color:#BB1745" placeholder="请在此填写纳税人识别号" />
+      </view>
+
+      <view class="pop-input">
+        <input placeholder-style="color:#999" placeholder="请在此填写收票人手机号码" />
+      </view>
+
+      <view class="pop-smtit">发票抬头
+        <text>发票内容选项已根据税法调整，具体请以展示为准</text>
+      </view>
+
+      <view class="pop-opt">
+        <label class="pop-opt_btn active">商品明细</label>
+        <label class="pop-opt_btn">商品类别</label>
+      </view>
+
+      <view class="pop-note">发票内容将显示详细商品名称与价格信息</view>
+
+
+      <button class="add-order" style="width: 180px;" bindtap='hideBuyModal'>确 定</button>
+
+
+    </view>
+
+
+    <button bindtap='hideBuyModal' class="btn pop-close"></button>
+  </view>
+  <!-- 弹窗end -->
+
+</view>

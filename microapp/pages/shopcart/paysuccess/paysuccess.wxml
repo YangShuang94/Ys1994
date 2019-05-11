@@ -1,0 +1,14 @@
+<!--pages/shopcart/paysuccess/paysuccess.wxml-->
+
+<view class='succicon'><image class='in_logo' mode='widthFix' src='../../../image/succ.png'></image></view>
+<view class='succmoney'>订单支付金额：<text>￥582.00元</text></view>
+<view class='succbtn checkorderbtn'>
+  <navigator url="/pages/mine/orderall/orderall" hover-class="address-hover">
+    <button>查看订单</button>
+  </navigator>
+</view>
+<view class='succbtn'>
+  <navigator url="/pages/shopcart/paysuccess/paysuccess" hover-class="address-hover">
+    <button>返回首页</button>
+  </navigator>
+</view>

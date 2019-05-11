@@ -1,0 +1,32 @@
+<!--pages/mine/address/address.wxml-->
+
+<view wx:for="{{address}}" wx:key="{{index}}" style='position: relative;'>
+  <!-- 列表层 -->
+  <view class='list' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index='{{index}}'>
+    <!-- 收货信息 -->
+    <view class='info' bindtap='select_addr' data-id="{{item.Id}}">
+      <view>
+        {{item.Name}} 
+        <span class="phone">{{item.Tel}}</span>
+        <span wx:if="{{item.IsDefault == true}}" class='def'>默认</span>
+      </view>
+      <view>
+        {{item.Province}} {{item.City}} {{item.County}} 
+      </view>
+      <view class="Address">{{item.Address}}</view>
+    </view>
+    <!-- <view class='deladdress' bindtap='deladdress' data-id='{{item.Id}}'>删除</view> -->
+    <!-- 编辑图标 -->
+    <navigator url="/pages/mine/setaddress/setaddress?id={{item.Id}}" hover-class="navigator-hover">
+      <view class='edit' bindtap='edit' data-id='{{item.Id}}'>编辑</view>
+    </navigator>
+  </view>
+  <!-- 删除按钮 -->
+  <!-- <view class="delete" data-id="{{item.Id}}" data-index='{{index}}' bindtap="delItem" >删除</view> -->
+</view>
+
+<view class='nullview' wx:if="{{address.length <= 0}}">暂无收货地址</view>
+ 
+<navigator url="/pages/mine/setaddress/setaddress?id=null" hover-class="navigator-hover">
+<view class='add' bindtap='add'>添加地址</view>
+</navigator>

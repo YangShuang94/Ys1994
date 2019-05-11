@@ -1,0 +1,153 @@
+/* pages/mall/mall.wxss */
+page{  
+  height: 100%;
+  background: #f5f8fa;
+} 
+
+/* banner轮播图 */
+.swiper_box {
+  /*width: 100%;*/
+  height: 187.5px;
+  position: relative;
+}
+swiper.swiper {
+  height: 100%;
+}
+.swiper-item {
+  display: block;
+  height: 100%;
+}
+.slide-image {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.imageCount{
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 78rpx;
+    color: #ffffff;
+    text-align: center;
+    font-size: 30rpx;
+    position: absolute;
+    right: 26rpx;
+    bottom:4rpx;
+}
+
+.mall-tips{
+  text-align: center;
+  margin: 20rpx 0 0rpx 0;
+  height: 50rpx;
+}
+.mall-tips image{
+  width: 76%;
+  height: auto;
+}
+
+
+
+/* 单个图片容器的样式 */
+.goods-wrap{
+  width: 96%;
+  margin: 0 auto;
+}
+.goods-tips-wrap{
+  width: 100%;
+  position: relative;
+  margin: 40rpx auto 50rpx auto;
+  border-bottom: 1rpx solid #d1d2d6;
+}
+.goods-tips{
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: -25rpx;
+  text-align: center;
+}
+.goods-tips text{
+  font-size: 28rpx;
+  color: #adaeb0;
+  background: #f5f8fa;
+  padding: 0 15rpx;
+}
+
+.mg_item {
+  /* width: 48.5%; */
+  width: 50%;
+  margin: 0rpx;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #f5f8fa;
+  font-size: 24rpx;
+  box-sizing: border-box;
+
+}
+.mg_item1{
+  padding-right: 16rpx;
+  /* float: left; */
+}
+.mg_item2{
+  /* padding-left: 16rpx; */
+  /* float: right; */
+}
+.mall-pro{
+  background: #fff;
+  margin-bottom: 16rpx;
+  padding-bottom: 14rpx;
+  box-shadow: 0 0.04rem 0.08rem 0 rgba(0,0,0,0.04);
+  border-radius: 8rpx;
+  display: block;
+  overflow: hidden;
+}
+.mall-pro image{
+  width: 100%;
+  height: auto;
+}
+
+.item_info{
+  /* height: 300rpx; */
+  overflow: hidden;
+  /* border-top:1px dashed red; */
+}
+.product-name{
+  color: #000;
+  text-align:left;
+  margin: 10rpx; 
+  /* margin-bottom: 5rpx;  */
+  font-size: 34rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.product-cont{
+  color: #5d5d5d;
+  text-align:left;
+  margin: 10rpx; 
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.product-price-wrap{
+  /* margin-bottom: 40rpx; */
+}
+.product-price-wrap .product-price-new{
+  color: #fe2349;
+  margin-left:10rpx;
+  font-weight:900;
+  font-size: 30rpx;
+}
+/* .product-price-wrap .product-price-old{
+  color: #868686;
+  text-decoration: line-through;
+  padding-left: 20rpx;
+} */
+/* .product-price-wrap .discount{
+  margin-left: 60rpx;
+  background-color: #000;
+  color: #fff;
+} */

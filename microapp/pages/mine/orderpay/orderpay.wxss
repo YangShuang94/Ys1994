@@ -1,0 +1,355 @@
+/* pages/mine/orderdetails/orderdetails.wxss */
+page{
+  background: #f6f7fb;
+  color: #2e2c2d;
+}
+.order-tt-img{
+  width: 100%;
+  height: auto;
+}
+
+.order-main-wrap{
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.order-info{
+  position: relative;
+  padding: 20rpx;
+  padding-left: 230rpx;
+  padding-right: 20rpx;
+  min-height: 190rpx;
+  box-sizing: border-box;
+}
+.order-img{
+  width: 160rpx;
+  max-height: 150rpx;
+  overflow: hidden;
+  position: absolute;
+  left: 50rpx;
+  top: 20rpx;
+  background: #f1f1f1;
+}
+.order-img image{
+  width: 100%;
+  height: 150rpx;
+}
+.order-info-t{
+  display: block;
+  font-size: 33rpx;
+  color: #2e2c2d;
+  font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
+.order-info-main{
+  font-size: 26rpx;
+  color: #323232;
+  margin: 10rpx 0;
+}
+.order-money{
+  font-size: 36rpx;
+  /* font-weight: bold; */
+  color: #1e1c1d;
+}
+
+.order-address-wrap{
+  padding-left: 70rpx;
+  margin-top: 40rpx;
+  padding-bottom: 30rpx;
+}
+.oaddresswrap{
+  padding-left:100rpx;
+  margin-top:0;
+  border-bottom:1rpx solid #f1f1f1;
+}
+.order-margin-top{
+  margin-top: 0rpx;
+}
+.order-address{
+  border-top: 1rpx solid #f7f7f7;
+  position: relative;
+  font-size: 32rpx;
+  padding-right: 160rpx;
+}
+
+.order-address-icon{
+  position: absolute;
+  left: -46rpx;
+  top: 26rpx;
+}
+.order-address-icon image{
+  width: 26rpx;
+}
+.order-name{
+  padding: 20rpx 0 14rpx 0;
+  /* font-weight: bold; */
+}
+.order-address-s{
+  font-size: 30rpx;
+}
+.nowaddress{
+  padding-bottom: 10rpx;
+  font-size: 30rpx;
+}
+.order-choice{
+  position: absolute;
+  right: 20rpx;
+  top: 50rpx;
+  font-size: 30rpx;
+  color: #fbb304;
+}
+
+.order-number-wrap{
+  padding-bottom: 0;
+}
+.order-number-wrap .order-address{
+  padding: 15rpx 0;
+  padding-right: 40rpx;
+}
+.order-number-wrap .order-address view{
+  padding: 10rpx 0;
+}
+.order-num-t text{
+  color: #7a7a7a;
+}
+.order-g-time{
+  font-size: 30rpx;
+}
+.order-g-time text{
+  color: #a2a0a1;
+  font-size: 28rpx;
+}
+
+.order-allmoney text{
+  float: right;
+  color: #000;
+  font-size: 32rpx;
+}
+.order-s-money{
+  text-align: right;
+  font-size: 28rpx
+}
+.order-s-money text{
+  color: #bd0a05;
+  font-size: 34rpx;
+  margin-left: 10rpx;
+}
+.order-main-box{
+  padding-bottom: 120rpx;
+}
+
+.footer-btn{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+}
+.footer-btn view{
+  width: 50%;
+  display: inline-block;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #afafaf;
+}
+.footer-btn .order-now-pay{
+  background: #ff2840;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+
+
+
+/* 选择地址 */
+.Applyalert{
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+}
+.applywrap{
+  background: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  font-size: 30rpx;
+}
+.applytitle{
+  color: #666;
+  text-align: center;
+  line-height: 80rpx;
+}
+.looktitle{
+  color: red;
+}
+.applyinp{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 1rpx solid #dfdfdd;
+  position: relative;
+  padding-left: 160rpx;
+  padding-right: 20rpx;
+}
+.applyinp text{
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  display: block;
+}
+.applyinp input{
+  width: 100%;
+  height: 100%;
+}
+
+.applybtn{
+  padding: 0;
+  margin-bottom: 60rpx;
+}
+.applybtn button{
+  background: #ff2741;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+
+.radio{
+  width: 100%;
+  position: relative;
+  display: block;
+  padding-right: 60rpx;
+  box-sizing: border-box;
+}
+.radioicon{
+  position: absolute;
+  right: -10rpx;
+  top: 0;
+}
+
+.addressname{
+  margin-bottom: 10rpx;
+}
+
+.cardRadiobox{
+  max-height: 600rpx;
+  padding-bottom: 80rpx;
+  /* overflow-y: auto; */
+}
+.cardradiolist{
+  padding: 20rpx;
+}
+.cardradiolist:nth-child(2n+1){
+  background: rgba(0, 0, 0, 0.03)
+}
+
+
+
+/* 未选中的 背景样式 */
+.radioicon .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx;
+   height: 34rpx;
+   border: none;
+   background: transparent;
+   color:transparent; /* 对勾颜色 白色 */
+}
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+.radioicon .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 34rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 34rpx;
+   text-align: center;
+   font-size:24rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+.radioicon .wx-radio-input.wx-radio-input-checked{
+  border-color: #ff2741 !important;
+  background: #ff2741 !important;
+}
+
+
+
+/* 新增收货地址 */
+.addressnewwrap{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+}
+.addressinp:first-child{
+  border-top: 0;
+}
+.addressinp{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 1rpx solid #dfdfdd;
+  position: relative;
+  padding-left: 160rpx;
+  padding-right: 20rpx;
+  font-size: 30rpx;
+}
+.addressCity{
+  padding-left: 130rpx;
+}
+.addressphone{
+  padding-left: 180rpx;
+}
+.addressinp text{
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  display: block;
+}
+.addressinp input{
+  width: 100%;
+  height: 100%;
+  font-size: 30rpx;
+}
+
+.applybtn{
+  padding: 0;
+}
+.applybtn button{
+  background: #ff2741;
+  color: #fff;
+  width: 90%;
+  height: 100rpx;
+  margin: 40rpx auto;
+  border-radius: 10rpx;
+}
+
+.radiomoren{
+  padding-left: 20rpx;
+  position: relative;
+}
+
+.addressDel{
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+  color: #666;
+  font-size: 26rpx;
+}

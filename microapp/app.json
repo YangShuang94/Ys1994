@@ -1,0 +1,85 @@
+{
+  "pages": [
+    "pages/confirmpay/confirmpay",
+    "pages/index/index",
+    "pages/mall/mall",
+    "pages/shopcart/shopcart",
+    "pages/mine/mine",
+    "pages/mall/commoditydetails/commoditydetails",
+    "pages/mine/collection/collection",
+    "pages/mine/nearbyshops/nearbyshops",
+    "pages/mine/sharemoney/sharemoney",
+    "pages/mine/shopbrief/shopbrief",
+    "pages/mine/shopbrieflike/shopbrieflike",
+    "pages/mine/sharemakmoney/sharemakmoney",
+    "pages/mine/orderall/orderall",
+    "pages/mine/serviceorderall/serviceorderall",
+    "pages/mine/orderdetails/orderdetails",
+    "pages/mine/orderSerdetails/orderSerdetails",
+    "pages/mine/serviceorder/serviceorder",
+    "pages/mine/address/address",
+    "pages/mine/setaddress/setaddress",
+    "pages/mine/haohuo/haohuo",
+    "pages/mine/orderpay/orderpay",
+    "pages/mine/ordercartpay/ordercartpay",
+    "pages/servicedetails/servicedetails",
+    "pages/servicenav/servicenav",
+    "pages/login/register/register",
+    "pages/login/loginforpsd/loginforpsd",
+    "pages/login/loginformsg/loginformsg",
+    "pages/shopcart/paysuccess/paysuccess",
+    "pages/logs/logs",
+    "pages/serviceshopcart/serviceshopcart"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "龙湖",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#797878",
+    "selectedColor": "#d81e06",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/boticon01.png",
+        "selectedIconPath": "image/boticon01-1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mall/mall",
+        "iconPath": "image/boticon02.png",
+        "selectedIconPath": "image/boticon02-1.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/shopcart/shopcart",
+        "iconPath": "image/boticon03.png",
+        "selectedIconPath": "image/boticon03-1.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "image/boticon04.png",
+        "selectedIconPath": "image/boticon04-1.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于获取周围商家信息"
+    }
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

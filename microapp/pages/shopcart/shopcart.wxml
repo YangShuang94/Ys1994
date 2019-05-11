@@ -1,0 +1,145 @@
+<!--pages/shopcart/shopcart.wxml-->
+<view class='cartcontainer' hidden="{{iscart}}">
+    <!-- 地址 -->
+    <view class='cartaddress' wx:if="{{goodList.length > 0}}">
+      
+      <view wx:if="{{address.length > 0}}">
+        <view class='addttcolor'>
+          <image class='addressicon01' mode='widthFix' src="../../image/cart_01.png"></image>配送地址
+        </view>
+        <view>收货人：{{choiceAddressinfo.Name}} {{choiceAddressinfo.Tel}}</view>
+        <view>收货地址：{{choiceAddressinfo.Province}} {{choiceAddressinfo.City}} {{choiceAddressinfo.Address}}</view>
+        <view wx:if="{{flag == true}}"></view>
+        <view wx:else="{{flag == false}}" class='redcity'>该地址暂不支持配送</view>
+        <!-- {{choiceAddressinfo.CityCode}} -->
+        <view class='otheraddress' bindtap='otherAddress'>
+          <image class='addressicon01' mode='widthFix' src="../../image/cart_02.png"></image>其他地址
+        </view>
+      </view>
+
+      <view wx:else>
+        <view class='addttcolor'  bindtap='addNewsaddress'>
+          <image class='addressicon01' mode='widthFix' src="../../image/cart_01.png"></image>立即添加地址
+        </view>
+      </view>
+      
+    </view>
+
+
+    <!-- 上部分  -->
+    <view class='section section-good'>
+        <checkbox-group bindchange="checkboxChange">
+            <view class='good' wx:for='{{goodList}}' wx:for-item="good" wx:key="good.name">
+
+                <!--第一个盒子  -->
+                <view class='good_title'>
+                  <view class='shangjia'>{{good.Provider}}</view>
+                  <!-- <view class='fhtime'>3月15日起发货</view> -->
+                </view>
+                <!-- 第二个盒子 -->
+                <view class='good_content'>
+                    <view class='good_checkbox'>
+                        <label class="checkbox">
+                            <checkbox value="{{good.Id}}" checked="{{good.checked}}" />
+                        </label>
+                    </view>
+                    <navigator url="/pages/mall/commoditydetails/commoditydetails?id={{good.ProductId}}" hover-class="address-hover">
+                    <view class='good_img'>
+                        <image class='cover' mode='aspectFill' src='{{good.CoverImage}}'></image>
+                    </view>
+                    <view class='content'>
+                        <view class='titles'>{{good.SubTitle}}</view>
+                        <view class='price'> <text>单价:</text> ¥{{good.Price}}</view>
+                    </view>
+                    </navigator>
+                    <view class='good_footer'>
+                        <view class='shanchu_trash' data-id="{{good.Id}}" bindtap="deleteList">删除</view>
+                        <view class='price saleprice' wx:if="{{good.DiscountAmount>0}}">已降{{good.DiscountAmount || 0}}元</view>
+                        <view class='price saleprice' wx:else=""></view>
+                        <view class='yxstepper'>
+                            <view class='subtract {{good.Count == 1 ? "disabled": ""}}' data-index='{{index}}' data-id="{{good.Id}}" bindtap='subtracttap'>-</view>
+                            <input class='count' type='number' disabled='disabled' value='{{good.Count}}'></input>
+                            <view class='yxadd' data-index="{{index}}" data-id="{{good.Id}}" bindtap='addtap'>+</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </checkbox-group>
+    </view>
+
+    <!-- 底部  -->
+    <view class='section-bottom'>
+        <checkbox-group bindchange="selectalltap">
+            <label class='checkbox-allcheck'>
+                <checkbox value="{{!checkAll}}" checked="{{checkAll}}" />
+                <text class='check-all-text'>全选</text>
+            </label>
+        </checkbox-group>
+        <view class="total">
+            <view class='totalPrice'>共{{totalCount}}件，总价：
+                <text>¥{{totalPrice}}</text>
+            </view>
+            <view class='totalCount'>合计已优惠：￥{{yhPrice}}</view>
+        </view>
+        <!-- <navigator url="/pages/shopcart/paysuccess/paysuccess" hover-class="address-hover"> -->
+          <view wx:if="{{totalCount > 0 }}" class='btn {{totalCount > 0 ? "btn-primary" : "btn-default"}}' bindtap= '{{flag == true ? "pageSkip" : ""}}'>去结算</view>
+          <view wx:if="{{totalCount <= 0 }}" class='btn {{totalCount > 0 ? "btn-primary" : "btn-default"}}'>去结算</view>
+        <!-- </navigator> -->
+    </view>
+
+</view>
+
+<!--如果购物车内没有数据，就显示没有数据-->
+<view class="cartList" hidden="{{!iscart}}">
+    <view>购物车什么都没有，赶快去购物吧~٩(๑❛ᴗ❛๑)۶~</view>
+</view>
+
+
+
+<!-- 选择其他收货地址 -->
+<view class='Applyalertbox' hidden='{{otherAddressHidden}}'>
+    <view class='Applyalert' bindtap='otherAddresscancel'></view>
+   
+    <view class='applywrap' style='height:450rpx;padding-bottom: 100rpx;'>
+      <view class='applytitle'>收货地址<text style='float:right;color:#ff2741;padding-right:20rpx;' bindtap='addNewsaddress'>新增</text></view>
+      <scroll-view  scroll-y="true" style="height: 100%;">
+        <view class='cardRadiobox'>
+            <radio-group class="radio-group">
+                <view class='cardradiolist' wx:for="{{address}}" wx:key="{{index}}" wx:for-item="item" data-id='{{item.Id}}' data-info="{{item}}" bindtap="radioChange">
+                    <label class="radio">
+                        <radio class='radioicon' value="{{item.value}}" checked="{{item.checked}}" />
+                        <view class='addressname'>{{item.Name}} {{item.Tel}}</view>    
+                        <view>{{item.City}}{{item.Address}}</view>
+                    </label>
+                </view>
+            </radio-group>
+        </view>
+        </scroll-view>
+    </view>
+    
+</view>
+
+
+<!-- 添加收货地址 -->
+<view class='Applyalertbox' hidden='{{newaddressHidden}}'>
+    <view class='Applyalert' bindtap='addAddressCancel'></view>
+    <view class='applywrap'>
+        <view class='applytitle'>新增收货地址</view>
+        <view class='addressinp'><text>收件人：</text><input type='text' value='' bindinput='name' /></view>
+        <view class='addressinp addressphone'><text>联系电话：</text><input type='number' maxlength='11' value='' bindinput='linemobile' /></view>
+        <view class='addressinp addressCity'><text>城市：</text>
+        <!-- <input type='text' value='' bindinput='city' /> -->
+        
+        <!-- 官方api三级城市联动 -->
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+        </picker>
+        </view>
+        <view class='addressinp addressphone'><text>详细地址：</text><input type='text' value='' bindinput='addressde' /></view>
+        
+        <view class='addressinp applybtn'>
+          <button bindtap='sureadd'>确定新增</button>
+        </view>
+    </view>
+</view>
+

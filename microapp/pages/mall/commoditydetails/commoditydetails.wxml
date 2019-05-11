@@ -1,0 +1,242 @@
+<!--pages/mall/commoditydetails/commoditydetails.wxml-->
+<!-- <view class='share' bindtap='shareClick'>分享</view> -->
+<import src="../../../wxParse/wxParse.wxml"/> 
+
+<view class="swiper_area">
+  <swiper autoplay="true" interval="3000" duration="200" bindchange="swiperchange" >
+    <block wx:for="{{orinGoodMsg.BannerImage}}" wx:key="{{index}}" wx:for-item="v">
+      <swiper-item data-img="{{v}}" bindtap="seeSwiperAll">
+        <image mode="aspectFill" data-id="{{index}}" src="{{v}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--<view class="imageCount">{{current+1}}/{{imgUrls.length}}</view>-->
+</view>
+
+<!-- 商品内容 -->
+<view class='goods_cont_wrap'>
+  <view class='goods_bj_color_white'>
+    <view class="price-box">
+      <text class='goods_price'>¥{{orinGoodMsg.Price}}</text>
+      <text class='goods_by' wx:if="{{orinGoodMsg.ExpressPrice <= 0}}">包邮</text>
+      <text class='goods_exprice' wx:else>运费{{orinGoodMsg.ExpressPrice}}</text>
+      <!-- <text class='goods_by' hidden="{{orinGoodMsg.FreeShipping}}">包邮</text> -->
+      <!-- <text class='goods_yprice'>市场价 ￥{{orinGoodMsg.OriginalPrice}}</text> -->
+    </view> 
+    <view class='goods_title'>{{orinGoodMsg.SubTitle}}</view>
+    <view class='goods_content'>{{orinGoodMsg.Brand}}</view>
+    <view class='goods_pp'>品牌<text>{{orinGoodMsg.Seller}}</text></view>
+  </view>
+
+  <view class='goods_choice_box'>
+    <!-- <view bindtap="viewFlowerArea" hidden="{{orinGoodMsg.Version.length <=0}} ? true : false" class="choose_catalog_area bg_fff display-flex-row good_choice_li"> -->
+    <view bindtap="viewFlowerArea" wx:if="{{orinGoodMsg.Version.length>0 || orinGoodMsg.Color.length>0}}" data-value="0" class="choose_catalog_area bg_fff display-flex-row good_choice_li">
+      <view class="fl">选择：{{flowerNameSelect}}   {{colorNameSelect}}</view>
+      <text class='right_arrow arrow_right fr'></text>
+    </view>
+
+    <!-- <view bindtap="" class="choose_catalog_area bg_fff display-flex-row good_choice_li">
+      <view class="fl">配送: <text class='address_color'>至 重庆市渝北区</text></view>
+      <text class='right_arrow arrow_right fr'></text>
+    </view> -->
+
+    <!-- <view class="choose_catalog_area bg_fff display-flex-row good_choice_li" style='height:auto;line-height:50rpx;padding-top:10rpx;padding-bottom:10rpx;'>
+      <view class="fl">说明: 
+        {{orinGoodMsg.ExpressDescription}}
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>
+    </view> -->
+  </view>
+
+  <!-- 商品详情 -->
+<view class='goods_details_wrap'>
+  <view class='goods_details_t'>图文详情</view>
+  <view class='image-box'>
+    <image class="slide-image" mode="widthFix" wx:for="{{orinGoodMsg.DetailImage}}" wx:key="{{index}}" src="{{item}}" />
+  </view>
+</view>
+<!-- 商品详情 -->
+
+  <view class='goods_ques_box'>
+    <view class="choose_catalog_area bg_fff display-flex-row goods_ques_tt">
+      <view class="fl text_color">配送说明</view>
+    </view>
+    
+    <view class="goods_zbbox">
+      <!-- <view class="text_color text_weight">质保多久</view> -->
+      <view class='goods_sm goods_content'>
+        <!-- {{orinGoodMsg.Notice}} -->
+        <template is="wxParse" data="{{wxParseData:lcarticle.nodes}}"/>
+      </view>
+    </view>
+  </view>
+
+</view>
+<!-- 商品内容 -->
+
+<!-- 商品详情 -->
+<!-- <view class='goods_details_wrap'>
+  <view class='goods_details_t'>图文详情</view>
+  <view>
+    <image class="slide-image" mode="widthFix" wx:for="{{orinGoodMsg.DetailImage}}" wx:key="{{index}}" src="{{item}}" />
+  </view>
+</view> -->
+<!-- 商品详情 -->
+
+<!-- 价格说明 -->
+<view class='goods_price_sm goods_ques_box' style='padding-bottom:100rpx;'>
+  <view class='goods_price_smtt goods_ques_tt'>购买须知</view>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  <!-- <view>划线价格:<text>指商品的专柜价、吊牌价、正品零售价、厂商指导价或该商品曾经展示过的销售价等,并非原价,仅供参考。</text></view>
+  <view>未划线价格:<text>指商品的销售价，是您最终决定是否购买商品的依据。</text></view> -->
+</view>
+<!-- 价格说明 -->
+
+
+
+<!-- 选择商品类型 -->
+<view  class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view  animation="{{animationData}}"  
+  class="catalog_area bg_fff {{isHidden == 1 ? 'display-block':'display-none'}}">
+  <view class="catalog_title">
+      <!-- <image class="thumbnails" src="{{flowerImgSelect}}" mode="aspectFill" bindtap='seeFlowersAll'></image> -->
+      <image class="thumbnails" src="{{orinGoodMsg.BannerImage[0]}}" mode="aspectFill" bindtap='seeFlowersAll'></image>
+      <view class="info_tip">
+        
+        <view>{{orinGoodMsg.Brand}}</view>
+        <view class="good_dis_price">¥{{orinGoodMsg.Price}}</view>  
+        <view class="choosed_catalog text-hidden">{{flowerNameSelect}}</view>
+      </view> 
+      <image class="cancel" bindtap="hideModal" src="../../../image/cancel.png"></image>       
+  </view>
+
+  <view  style="height: 500rpx;margin-top:175rpx">
+    <view class="info_choose" style='padding-bottom:120rpx;'>
+        <view wx:if="{{orinGoodMsg.Version.length > 0}}">
+          <view class="catalog_name">选择</view>
+          <view class="catalog_items display-flex-row" >
+            <block wx:for="{{orinGoodMsg.Version}}" wx:key="{{index}}" wx:for-item="v">
+              <text data-select="{{index}}"  data-name="{{v}}"
+                  class="{{index == flowerSelect ? 'active':''}} catalog_item" 
+                  bindtap="chooseFlower">{{v}}
+              </text>
+            </block>
+          </view> 
+        </view> 
+
+        <view wx:if="{{orinGoodMsg.Color.length > 0}}">
+          <view class="catalog_name">颜色</view>
+          <view class="catalog_items display-flex-row" >
+            <block wx:for="{{orinGoodMsg.Color}}" wx:key="{{index}}" wx:for-item="v">
+              <text data-select="{{index}}"  data-name="{{v}}"
+                  class="{{index == colorSelect ? 'active':''}} catalog_item" 
+                  bindtap="chooseColor">{{v}}
+              </text>
+            </block>
+          </view>   
+        </view> 
+
+        <view class="borderTop"></view>
+        <view class="catalog_count display-flex-row" >
+          <view class="catalog_name">
+            购买数量
+          </view>
+          <view class="count_control display-flex-row">
+            <span class="item_reduce item_btn" bindtap="{{goodNum>1?'goodReduce':''}}">-</span>
+                <span class="item_num"  bindtap="carRemove">{{goodNum}}</span>
+                <span class="item_add item_btn" bindtap="goodAdd">+</span>
+          </view>   
+        </view>  
+        <view class="borderTop"></view>
+    </view>
+  </view>
+
+  <view class="btn_hidden"></view>
+  <view class="btn_area" >
+    <view class='goods_bottom_wrap'>
+      <!-- 选择 -->
+      <view wx:if="{{clicktype == 0}}">
+        <view class='goods_cart goods_left'>
+          <view class='goods_cart_box' bindtap='goShopCart'>
+            <view class='goods_cart_num' wx:if="{{shopCartNum > 0}}">{{shopCartNum}}</view>
+            <image mode="widthFix" src='../../../image/boticon03.png'></image>
+            <view class='goods_cart_icon'>购物车</view>
+          </view>
+        </view>
+        <view bindtap="addCart" class=" bg_ff7e8d goods_left goods_cart_btn">加入购物车</view>
+        <view bindtap="pageSkip" data-name="{{orinGoodMsg.Brand}}" data-price="{{orinGoodMsg.Price}}" data-imgs="{{orinGoodMsg.BannerImage[0]}}" class=" bg_ff2741 goods_left goods_cart_btn">立即购买</view>
+      </view>
+      <!-- 加入购物车 -->
+      <view wx:if="{{clicktype == 1}}">
+        <view bindtap="addCart" class="bg_ff2741 goods_left goods_cart_btn" style='width:100%;'>确定</view>
+      </view>
+      <!-- 立即购买 -->
+      <view wx:if="{{clicktype == 2}}">
+        <view bindtap="pageSkip" data-name="{{orinGoodMsg.Brand}}" data-price="{{orinGoodMsg.Price}}" data-expressprice="{{orinGoodMsg.ExpressPrice}}" data-imgs="{{orinGoodMsg.BannerImage[0]}}" class=" bg_ff2741 goods_left goods_cart_btn" style='width:100%;'>确定</view>
+      </view>
+
+    </view>
+  </view>
+</view>
+<!-- 选择商品类型 -->
+
+
+
+<!-- footer bottom -->
+<view class="{{isHidden == 0 ? 'display-block':'display-none'}}">
+  <view class='goods_bottom_wrap'>
+    <view class='goods_cart goods_left'>
+
+      <!-- <navigator url="/pages/shopcart/shopcart?title=navigate" hover-class="navigator-hover"> -->
+      <view class='goods_cart_box' bindtap='goShopCart'>
+        <view class='goods_cart_num' wx:if="{{shopCartNum > 0}}">{{shopCartNum}}</view>
+        <image mode="widthFix" src='../../../image/boticon03.png'></image>
+        <view class='goods_cart_icon'>购物车</view>
+      </view>
+      <!-- </navigator> -->
+
+    </view>
+    <view bindtap="viewFlowerArea" data-value="1" class=" bg_ff7e8d goods_left goods_cart_btn">加入购物车</view>
+    <view bindtap="viewFlowerArea"  data-value="2" data-name="{{orinGoodMsg.Brand}}" data-price="{{orinGoodMsg.Price}}" class=" bg_ff2741 goods_left goods_cart_btn">立即购买</view>
+  </view>
+</view>
+
+
+<!-- 分享弹框 -->
+<view class='Applyalertbox' hidden='{{shareHidden}}'> 
+  <view class='Applyalert' bindtap='shareCancel'></view>
+  <view class='applywrap'>
+    <view class='share_wrap'>
+      <view class='share_icon'>
+        <image mode="widthFix" src='../../../image/share_01.png'></image>
+        <view>分享到微信</view>
+      </view>
+      <view class='share_icon'>
+        <image mode="widthFix" src='../../../image/share_02.png'></image>
+        <view>分享到QQ</view>
+      </view>
+      <view class='share_icon' bindtap='shareproClick'>
+        <image mode="widthFix" src='../../../image/share_03.png'></image>
+        <view>生成封面图</view>
+      </view>
+    </view>
+    <view class='applyinp applybtn'><button bindtap='shareCancel'>取消</button></view>
+  </view>
+</view>
+
+<!-- 生成分享图 -->
+<view class='Applyalertbox' hidden='{{shareproHidden}}'> 
+  <view class='Applyalert'>
+  <view class='sharepro'>
+    <view class='shareprobox'>
+      <view class='sharepro_cancel' bindtap='shareproCancel'></view>
+      <view class='sharepro_img'><image mode="widthFix" src='{{orinGoodMsg.BannerImage[0]}}'></image></view>
+      <view class='sharepro_info'>{{orinGoodMsg.Title}}</view>
+      <view class='sharepro_money'>￥{{orinGoodMsg.Price}}</view>
+      <view class='sharepro_ym'>市场价￥{{orinGoodMsg.OriginalPrice}}</view>
+      <view class='sharepro_code'>太阳码</view>
+      <view class='sharepro_btn'><button>下载图片</button></view>
+    </view>
+  </view>
+  </view>
+</view>

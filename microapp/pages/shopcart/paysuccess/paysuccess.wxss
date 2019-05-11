@@ -1,0 +1,30 @@
+/* pages/shopcart/paysuccess/paysuccess.wxss */
+.succicon{
+  text-align: center;
+  padding: 90rpx 0 40rpx 0;
+}
+.succicon image{
+  width: 200rpx;
+}
+.succmoney{
+  text-align: center;
+  font-size: 34rpx;
+}
+.succmoney text{
+  color: #fbb304;
+}
+.succbtn button{
+  width: 86%;
+  margin: 0 auto;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
+  margin-top: 40rpx;
+  color: #999;
+}
+.checkorderbtn{
+  margin-top: 110rpx;
+}
+.checkorderbtn button{
+  border-color: #259b24;
+  color: #259b24;
+}

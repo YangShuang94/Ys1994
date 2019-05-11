@@ -1,0 +1,120 @@
+<!--pages/mine/orderall/orderall.wxml-->
+<!-- 工人可以接单的 服务订单 -->
+
+<view class='order-head-nav'>
+  <view class='order-nav {{ordertyped == 1 ? "navactive" : ""}}' data-type='1' bindtap='choiceTypeOrder'>全部</view>
+
+  <view class='order-nav {{ordertyped == 2 ? "navactive" : ""}}' data-type='2' bindtap='choiceTypeOrder'>新分配
+    <text class='nav-num' wx:if="{{newTaskCount != 0}}">{{newTaskCount}}</text>
+  </view>
+
+  <view class='order-nav {{ordertyped == 3 ? "navactive" : ""}}' data-type='3' bindtap='choiceTypeOrder'>已接单</view>
+
+  <view class='order-nav {{ordertyped == 4 ? "navactive" : ""}}' data-type='4' bindtap='choiceTypeOrder'>已完成</view>
+</view>
+
+<!-- <view class='order-head-nav'>
+  <view class='order-nav navactive'>全部</view>
+  <view class='order-nav'>新分配<text class='nav-num'>1</text></view>
+  <view class='order-nav'>已接单<text class='nav-num'>1</text></view>
+  <view class='order-nav'>已完成<text class='nav-num'>1</text></view>
+</view> -->
+
+<view class='cont'>
+  <scroll-view scroll-y='true' lower-threshold="0" bindscrolltolower='nScrollLower'>
+    <view class='order-list-box' wx:for="{{orderList}}" data-id="{{index}}" wx:key="{{index}}" wx:for-item="v">
+      <!-- <view class='order-list-box' wx:for="{{res}}" data-id="{{index}}" wx:key="{{index}}" > -->
+      <view class='order-time'>
+        {{v.LastStatusTimeStr}}
+        <text>{{v.StatusName}}</text>
+      </view>
+      <view class='order-info'> 
+        <view class='order-info-t'>{{v.Title}}</view>
+        <view class='order-info-t-color'>{{v.Contact}} {{v.Phone}}</view>
+        <view class='order-info-t-color'>{{v.Address}}</view>
+        <!-- <view class='order-img'>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+        </view> -->
+        
+      </view>
+
+      <view class='order-get-time'></view>
+      <view class='order-money'>
+        <view class='order-btn-box'>
+          <!-- <text class='order-btn'>查看项目</text> -->
+          <text class='order-btn order-btn-red' wx:if="{{v.Status == 30}}" data-id="{{v.Id}}" bindtap='orderConfirm'>接  单</text>
+          <text class='order-btn order-btn-red' wx:if="{{v.Status == 40}}" data-id="{{v.Id}}" bindtap='getClick'>服务定价</text>
+          <!-- <text class='order-btn order-btn-red'>修改价格</text> -->
+        </view>
+      </view>
+    </view>
+
+    <view class="loading" hidden="hidden">正在加载更多...</view>  
+    <view class="loading complete" hidden="hidden">
+      暂无数据~
+    </view> 
+
+    <view class="loading" hidden="{{nLoading}}">正在加载更多...</view>  
+    <view class="loading complete" hidden="{{nLoadingComplete}}">
+      {{loadingsucctext}}
+    </view> 
+
+  </scroll-view>
+</view>
+
+<!-- <view>
+  <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+    <view class='order-list-box' wx:for="{{res}}" data-id="{{index}}" wx:key="{{index}}" >
+      <view class='order-time'>
+        分配时间：2019-01-10
+        <text>新分配</text>
+      </view>
+      <view class='order-info'> 
+        <view class='order-info-t'>时间来访记录时代发了多少积分来得及丽枫酒店了</view>
+        <view class='order-info-t-color'>张先生 15224152562</view>
+        <view class='order-info-t-color'>重庆市沙坪坝区重庆市沙坪坝区重庆市沙坪坝区</view>
+        <view class='order-img'>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+          <view><image mode="widthFix" src='../../../image/img.png'></image></view>
+        </view>
+        
+      </view>
+
+      <view class='order-get-time'></view>
+      <view class='order-money'>
+        <view class='order-btn-box'>
+          <text class='order-btn'>查看项目</text>
+          <text class='order-btn order-btn-red' bindtap='getClick'>接  单</text>
+          <text class='order-btn order-btn-red'>修改价格</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="loading" hidden="hidden">正在加载更多...</view>  
+    <view class="loading complete" hidden="hidden">
+      暂无数据~
+    </view> 
+
+  </scroll-view>
+</view> -->
+
+
+
+
+<!-- 接单弹框 -->
+<view class='Applyalertbox' hidden='{{applyHidden}}'> 
+  <view class='Applyalert' bindtap='getCancel'></view>
+  <view class='applywrap'>
+    <!-- <view class='applyinp'><text>已支付上门费：</text>￥20.00元</view> -->
+    <view class='applyinp applyser'><text>服务费：</text><input type='digit' bindinput='sermoney' /></view>
+    <view class='applyinp remark'><text>描述：</text><textarea bindinput='serremark'></textarea></view>
+    <!-- <view class='applyinp getmoney'>
+      <view>合计：￥120.00元</view>
+      <view class='getpaymoney'>还需支付：<font>￥100.00元</font></view>
+    </view> -->
+    <view class='applyinp applybtn'><button bindtap='serviceConfirm'>确定</button></view>
+  </view>
+</view>

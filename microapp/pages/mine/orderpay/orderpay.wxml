@@ -1,0 +1,132 @@
+<!--pages/mine/orderdetails/orderdetails.wxml-->
+<view><image mode='widthFix' src="../../../image/ordericon.png" class="order-tt-img" /></view>
+
+<view class='order-main-box'>
+  <view class='order-main-wrap'>
+
+    <view class='order-address-wrap oaddresswrap' wx:if="{{isaddress == true}}"  bindtap='choiceAddress'>
+      <view class='order-address'>
+        <view class="order-address-icon"><image mode='widthFix' src="../../../image/ordericon01.png"  /></view>
+        <view class='order-name'>{{choiceAddressinfo.Name}}  {{choiceAddressinfo.Tel}}</view>
+        <view class='order-address-s'>地址：{{choiceAddressinfo.Province}} {{choiceAddressinfo.City}} {{choiceAddressinfo.Address}}</view>
+        <view class='order-choice'>
+          <view>其他地址</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='order-address-wrap oaddresswrap nowaddress' wx:else>
+      <!-- <navigator url="/pages/mine/setaddress/setaddress?id=null" hover-class="navigator-hover"> -->
+      <view class='order-address' bindtap='addNewsaddress'>
+        <view class="order-address-icon"><image mode='widthFix' src="../../../image/ordericon01.png"  /></view>
+        <view class='order-name'>立即添加地址</view>
+      </view>
+      <!-- </navigator> -->
+    </view>
+
+
+
+    <view class='order-info'>
+      <view class='order-img'><image mode="aspectFill" src='{{goods.imgs}}'></image></view>
+      <text class='order-info-t'>{{goods.name}}</text>
+      <view class='order-info-main'>
+        <text wx:if="{{goods.versionname != ''}}">{{goods.versionname}}</text>
+        <text wx:if="{{goods.colorname != ''}}"> {{goods.colorname}} </text>
+        数量：{{goods.count}} 
+      </view>
+      <view class='order-money'>￥{{goods.price}}</view>
+    </view>
+    
+  </view>
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <!--<view class='order-address'>
+        <view class='order-num-t'>订单编号：<text>525663456464864564564</text></view>
+      </view>-->
+      <view class='order-address'>
+        <view class='order-g-time'>支付方式：<text>在线支付</text></view>
+      </view>
+      <!--<view class='order-address'>
+        <view class='order-g-time'>配送时间：<text>2019-04-02</text></view>
+      </view>-->
+    </view>
+  </view>
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <view class='order-address'>
+        <view class='order-num-t order-allmoney'>订单总额<text>￥{{goods.price * goods.count}}</text></view>
+        <view class='order-g-time order-allmoney'>运费<text>+￥{{goods.expressprice}}</text></view>
+      </view>
+      <view class='order-address'>
+        <view class='order-s-money'>应付款<text>￥{{goods.price * goods.count + goods.expressprice *1}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='footer-btn'>
+  <view bindtap='back'>取消</view>
+  <view class='order-now-pay' bindtap="sureOrder">确认订单</view>
+</view> 
+
+<!-- 订单确认成功 -->
+<view class='Applyalertbox' hidden='{{lookHidden}}'>
+  <view class='Applyalert' bindtap='lookCancel'></view>
+  <view class='applywrap'>
+    <view class="applytitle looktitle">订单确认成功</view>
+    <navigator url='/pages/mine/orderall/orderall?type=2'><view class='applyinp applybtn'> <button>查看订单</button></view></navigator>
+    <view class='applyinp applybtn'> <button bindtap='f_pay'>支付</button></view>
+  </view>
+</view>
+
+<!-- 选择其他收货地址 -->
+<view class='Applyalertbox' hidden='{{addressHidden}}'>
+    <view class='Applyalert' bindtap='cancelchoiceAddress'></view>
+   
+    <view class='applywrap' style='height:450rpx;'>
+      <view class='applytitle'>收货地址 
+        <text style='float:right;color:#ff2741;padding-right:20rpx;' bindtap='addNewsaddress'>新增</text>
+      </view>
+      <scroll-view  scroll-y="true" style="height: 450rpx;">
+        <view class='cardRadiobox'>
+            <radio-group class="radio-group">
+                <view class='cardradiolist' wx:for="{{address}}" wx:key="{{index}}" wx:for-item="item" data-id='{{item.Id}}' data-info="{{item}}" bindtap="radioChange">
+                    <label class="radio">
+                        <radio class='radioicon' value="{{item.value}}" checked="{{item.checked}}" />
+                        <view class='addressname'>{{item.Name}} {{item.Tel}}</view>    
+                        <view>{{item.City}}{{item.Address}}</view>
+                    </label>
+                </view>
+            </radio-group>
+        </view>
+        </scroll-view>
+    </view>
+</view>
+
+
+<!-- 添加收货地址 -->
+<view class='Applyalertbox' hidden='{{newaddressHidden}}'>
+    <view class='Applyalert' bindtap='addAddressCancel'></view>
+    <view class='applywrap'>
+        <view class='applytitle'>新增收货地址</view>
+        <view class='addressinp'><text>收件人：</text><input type='text' value='' bindinput='name' /></view>
+        <view class='addressinp addressphone'><text>联系电话：</text><input type='number' maxlength='11' value='' bindinput='linemobile' /></view>
+        <view class='addressinp addressCity'><text>城市：</text>
+        <!-- <input type='text' value='' bindinput='city' /> -->
+        <!-- 官方api三级城市联动 -->
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="picker">{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+        </picker>
+        </view>
+        <view class='addressinp addressphone'><text>详细地址：</text><input type='text' value='' bindinput='addressde' /></view>
+        
+        <view class='addressinp applybtn'>
+          <button bindtap='sureadd'>确定新增</button>
+        </view>
+    </view>
+</view>
+
+
+

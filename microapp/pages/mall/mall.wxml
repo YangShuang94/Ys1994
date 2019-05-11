@@ -1,0 +1,75 @@
+<!--pages/mall/mall.wxml-->
+<scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="nScrollLower">
+  <view class="swiper_box">
+  
+    <swiper class="swiper" autoplay="true" interval="3000" duration="200" bindchange="swiperchange"  circular="true">
+      <block wx:for="{{bannerImages}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item.ImgUrl}}"  data-urls='{{item.url}}' bindtap='onUrlgo' class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="imageCount">{{current+1}}/{{bannerImages.length}}</view>
+  </view>
+
+  <view class='mall-tips'>
+    <image mode="widthFix" src='../../image/mall-tips.png'></image>
+  </view>
+
+  <view class="goods-wrap">
+    <view class='goods-tips-wrap'> 
+      <view class='goods-tips'><text>热销好货</text></view>
+    </view>
+    <view class="mg_item mg_item1">
+      <view class='mall-pro' wx:for="{{col1}}" wx:key="id">
+        <navigator url="/pages/mall/commoditydetails/commoditydetails?id={{item.Id}}&_title={{item.Title}}" hover-class="navigator-hover">
+          <view class="item_info">
+            <image src="{{item.PicUrl}}" mode="widthFix"></image>
+          </view>
+          <view class="product-name">
+            {{item.Title}}
+          </view>
+          <view class="product-cont">
+            {{item.SubTitle}}
+          </view> 
+          <view class="product-price-wrap">
+            <!-- <p class="product-price-new">￥{{item.Price}}</p>  -->
+            <p class="product-price-new">￥{{item.OriginalPrice}}</p>  
+            <!-- <p class="product-price-old">￥{{item.OriginalPrice}}</p>  -->
+              <!-- <p class="discount">{{item.discount}}折</p>    -->
+          </view>
+        </navigator>
+
+      </view>
+    </view>
+    
+    <view class="mg_item">
+      <view class='mall-pro' wx:for="{{col2}}" wx:key="id">
+        <navigator url="/pages/mall/commoditydetails/commoditydetails?id={{item.Id}}&_title={{item.Title}}" hover-class="navigator-hover">
+        <view class="item_info mg_item2">
+          <image src="{{item.PicUrl}}" mode="widthFix"></image>
+        </view>
+        <view class="product-name">
+          {{item.Title}}
+        </view>
+        <view class="product-cont">
+          {{item.SubTitle}}
+        </view>
+        <view class="product-price-wrap">
+          <p class="product-price-new">￥{{item.Price}}</p>  
+          <!-- <p class="product-price-old">￥{{item.Price}}</p>  -->
+            <!-- <p class="discount">{{item.discount}}折</p>    -->
+        </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading" hidden="{{nLoading}}">正在加载更多...</view>  
+  <view class="loading complete" hidden="{{nLoadingComplete}}">
+    {{loadingsucctext}}
+  </view> 
+</scroll-view>
+<view style="display:none">
+  <image wx:for="{{images}}" wx:key="id" id="{{item.oid}}" src="{{item.imageurl}}" bindload="onImageLoad"></image>
+</view> 

@@ -1,0 +1,268 @@
+<!--pages/mall/commoditydetails/commoditydetails.wxml-->
+<import src="../../wxParse/wxParse.wxml"/> 
+
+<view class="swiper_area">
+  <swiper autoplay="true" interval="3000" duration="200" bindchange="swiperchange">
+    <block wx:for="{{serviceDetails.BannerPics}}" wx:key="{{index}}">
+      <swiper-item data-img="{{item}}" bindtap="seeSwiperAll">
+        <image mode="aspectFill" data-id="{{item}}" src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="imageCount">{{current+1}}/{{serviceDetails.BannerPics.length}}</view>
+</view>
+
+<!-- 商品内容 -->
+<view class='goods_cont_wrap'> 
+  <view class='ser_main_box'>
+    <view class="price-box">
+      <!-- <text class='goods_by goods_byone'>上门费</text> -->
+      <text class='serviceCharge'>上门费:</text>
+      <text class='goods_price' wx:if="{{serviceDetails.Price == 0}}" style='font-size:32rpx;'>免费</text>
+      <text class='goods_price' wx:else>¥{{serviceDetails.Price}}</text>
+      <text class='goods_by goods_bytwo'>上门服务</text>
+      <!-- <text class='ser_ys_num'>已售0单</text> -->
+    </view> 
+    <view class='goods_title'>{{serviceDetails.Title}}</view>
+    <view class='goods_content' wx:if="{{serviceDetails.SubTitle}}">{{serviceDetails.SubTitle}}</view>
+    <view class='goods_pp'>服务提供<text>{{serviceDetails.ProviderName}}</text></view>
+    <!-- <view class='goods_content goods_ser_tips'>保障
+      <view><image mode='widthFix' src="../../image/ser_02.jpg"></image>无额外收费</view>
+      <view><image mode='widthFix' src="../../image/ser_03.jpg"></image>未服务随时退</view>
+      <view><image mode='widthFix' src="../../image/ser_01.jpg"></image>不满意重服务</view>
+    </view> -->
+  </view>
+
+  <!-- <view class='ser_choose_list'>
+    <view bindtap="viewChoose" class="choose_catalog_area bg_fff display-flex-row">
+      <view class="fl">选择：{{flowerNameSelect}}</view>
+      <text class='right_arrow arrow_right fr'></text>
+    </view>
+  </view>
+
+  <view class='ser_choose_list ser_time_box'>
+    <view bindtap="viewTimeChoose" class="choose_catalog_area bg_fff display-flex-row">
+      <view class="fl">上门时间：</view>
+      <view class='ser_time  fr'>{{timeNameSelect}}<text class='right_arrow ser_time_arrow'></text></view>
+    </view>
+  </view> -->
+
+  <!-- 服务保障 -->
+  <view class="vimo row" id="row" >
+    <view class="col-10 colbz">保障</view>
+    <view class="col-25"> <image src="/image/ser_01.jpg" ></image> <text>未服务全额退</text> </view>
+    <view class="col-25 col-25-2" ><image src="/image/ser_02.jpg"></image><text>爽约包赔</text> </view>
+    <view class="col-25"><image src="/image/ser_03.jpg"></image> <text>不满意重服务</text></view>
+  </view>
+
+</view>
+<!-- 商品内容 -->
+
+<!-- 服务详情 -->
+<view class='goods_details_wrap' style='margin-top:20rpx;'>
+  <view class='shop_main_tt_line'><text></text>服务内容</view>
+  <!-- <view class='ser_ser_box_one'> -->
+    <view class='ser_ser_box_img' wx:for="{{serviceDetails.ServiceDetailPics}}" wx:key="{{index}}">
+      <image mode='widthFix' src="{{item}}"></image>
+    </view>
+    
+    <!-- <view class='ser_ser_tips'>
+      <view class='shop_main_tt_line'><text></text>上门费</view>
+      <view class='ser_ser_tips_txt'>工程师上门后,用户主动放弃维修时收取<text>30元/次</text></view>
+    </view>
+    <view class='ser_ser_tips'>
+      <view class='shop_main_tt_line'><text></text>更换辅件(机器正常）</view>
+      <view class='ser_ser_tips_txt'>插头、旋钮、卡子<text>150元/次</text></view>
+    </view>
+    <view class='ser_ser_tips'>
+      <view class='shop_main_tt_line'><text></text>燃气灶</view>
+      <view class='ser_ser_tips_txt'>维修一口价<text>255元/台</text></view>
+      <view class='ser_ser_tips_txt'>更换脉冲点火器<text>298元/台</text></view>
+      <view class='ser_ser_tips_txt'>更换脉冲点火器(进口/合资品牌）<text>448元/台</text></view>
+      <view class='ser_ser_tips_txt'>更换炉头<text>330元/台</text></view>
+      <view class='ser_ser_tips_txt'>更换炉头（进口/合资品牌）<text>495元/台</text></view>
+    </view>
+    <view class='ser_ser_tips'>
+      <view class='shop_main_tt_line'><text></text>商用机</view>
+      <view class='ser_ser_tips_txt'>维修一口价<text>面议</text></view>
+    </view> -->
+  <!-- </view> -->
+
+  <!-- 服务说明 -->
+  <view class='ser_ser_sm_box'>
+    <view class='ser_ser_title_box'><view class='ser_ser_sm_title'>服务说明</view></view>
+    <view class='ser_ser_list_box'>
+      <!-- {{serviceDetails.Notice}} -->
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+     
+    </view>
+  </view>
+</view>
+<!-- 服务详情 -->
+
+<!-- 服务流程 -->
+<view class='goods_details_wrap'>
+  <view class='shop_main_tt_line'><text></text>服务流程</view>
+  <view class='ser_ser_list_box ser_ser_lc_box'>
+    <!-- {{serviceDetails.ServiceFlow}} -->
+    <template is="wxParse" data="{{wxParseData:lcarticle.nodes}}"/>
+    
+    </view>
+</view>
+<!-- 服务流程 -->
+
+<!-- 服务价目表 -->
+<view class='goods_details_wrap'>
+  <view class='shop_main_tt_line'><text></text>服务价目表</view>
+  <view class='ser_ser_box_img' wx:for="{{serviceDetails.ServicePricePics}}" wx:key="{{index}}">
+      <image mode='widthFix' src="{{item}}"></image>
+    </view>
+  <!-- <image mode='widthFix' src='../../image/ser_04.jpg' style='width:100%;margin-top:20rpx;'></image>
+  <view class='ser_ser_jm_box'>
+      <view class='ser_jm_tt'><text class='ser_ser_jm_left'>项目</text><text class='ser_ser_jm_right'>价格</text></view>
+      <view class='ser_jm_td'><text class='ser_ser_jm_left'>上门费</text><text class='ser_ser_jm_right ser_jm_right_tt'>30元/次</text></view>
+  </view> -->
+</view>
+<!-- 服务价目表 -->
+
+<!-- 下单须知 -->
+<view class='goods_details_wrap'>
+  <view class='shop_main_tt_line'><text></text>下单须知</view>
+  <view class='ser_ser_list_box ser_ser_xd_box'>
+    <!-- {{serviceDetails.OrderNotice}} -->
+    <template is="wxParse" data="{{wxParseData:orarticle.nodes}}"/>
+      <!-- <view>1. 下单前请充分理解订单金额、服务时间、服务项等具体细节、以免影响您的选择。</view>
+      <view>2. 58到家平台服务由第三方提供，在线支付的订单是您唯一的售后维权保障凭据。为了您的个人权益和信息安全，请务必在58到家平台下单支付。</view> -->
+    </view>
+</view>
+<!-- 下单须知 -->
+
+
+
+<!-- 选择服务项 -->
+<!-- <view  class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view  animation="{{animationData}}"  
+  class="catalog_area bg_fff {{isHidden == 1 ? 'display-block':'display-none'}}">
+  <view class="catalog_title">
+      <image class="thumbnails" src="{{flowerImgSelect}}" mode="aspectFill" bindtap='seeFlowersAll'></image>
+      <view class="info_tip">
+        <view class="good_dis_price">¥{{goodPrice}}</view>  
+        <view class="choosed_catalog text-hidden">{{flowerNameSelect}}</view>
+      </view> 
+      <image class="cancel" bindtap="hideModal" src="../../image/cancel.png"></image>       
+  </view>
+
+  <scroll-view  scroll-y="true" style="min-height: 450rpx;margin-top:175rpx">
+    <view class="info_choose">
+        <view class="catalog_name">选择</view>
+        <view class="catalog_items display-flex-row" >
+          <block wx:for="{{goodflowers}}" wx:key="{{index}}">
+            <text data-img="{{globalData.root}}{{item.flower_image}}" data-select="{{item.flower_id}}"  data-flower-name="{{item.flower_name}}"
+                class="{{item.flower_id == flowerSelect ? 'active':''}} catalog_item" 
+                bindtap="chooseFlower">{{item.flower_name}}
+            </text>
+          </block>
+        </view>   
+
+        <view class="borderTop"></view>
+        <view class="catalog_count display-flex-row" >
+          <view class="catalog_name">
+            购买数量
+          </view>
+          <view class="count_control display-flex-row">
+            <span class="item_reduce item_btn" bindtap="{{goodNum>1?'goodReduce':''}}">-</span>
+                <span class="item_num"  bindtap="carRemove">{{goodNum}}</span>
+                <span class="item_add item_btn" bindtap="goodAdd">+</span>
+          </view>   
+        </view>  
+         <view class="borderTop"></view>
+    </view>
+  </scroll-view>
+
+  <view class="btn_hidden"></view>
+  <view class="btn_area" >
+    <view bindtap="saveOrder" class="goods_half_half color_fff">立即预约</view>
+  </view>
+</view> -->
+<!-- 选择服务项 -->
+
+
+<!-- 选择上门时间 -->
+<!-- <view  class="commodity_screen" bindtap="timehideModal" wx:if="{{showTimeModalStatus}}"></view>
+<view class="catalog_area bg_fff {{timeIsHidden == 1 ? 'display-block':'display-none'}}">
+  <scroll-view  scroll-y="true" style="min-height: 450rpx;">
+    <view class="info_choose">
+        <view class="catalog_name">选择时间</view>
+        <view class="catalog_items display-flex-row" >
+          <block wx:for="{{timeList}}" wx:key="{{index}}">
+            <text data-select="{{item.time_id}}"  data-flower-name="{{item.time_name}}"
+                class="{{item.time_id == timeSelect ? 'active':''}} catalog_item" 
+                bindtap="chooseTime">{{item.time_name}}
+            </text>
+          </block>
+        </view>   
+    </view>
+  </scroll-view>
+
+  <view class="btn_hidden"></view>
+  <view class="btn_area" >
+    <view class="goods_half_half color_fff">立即预约</view>
+  </view>
+</view> -->
+<!-- 选择上门时间 -->
+
+
+
+<!-- footer bottom -->
+<view class="{{isHidden == 0 ? 'display-block':'display-none'}}">
+  <view class="goods_bottom"></view>
+
+  <navigator url="/pages/serviceshopcart/serviceshopcart?id={{id}}"  class="goods_bottom_btn">
+    <!-- <view bindtap="addCart" class="goods_half_half bg_09bb07 color_fff">加入购物车</view> -->
+    <!-- <view class="goods_half_half color_fff" bindtap='yyShow'>立即预约</view> -->
+    <view class="goods_half_half color_fff">立即预约</view>
+  </navigator>
+</view>
+
+
+<!-- 立即预约弹框 -->
+<!-- <view class='Applyalertbox' hidden='{{yyHidden}}'>
+  <view class='Applyalert' bindtap='yyCancel'></view>
+  <view class='applywrap'>
+    <view class='applytitle'>立即预约</view>
+    <view class='applyinp'><text>联系人：</text><input type='text' bindinput="nameInput" /></view>
+    <view class='applyinp' style='padding-left:187rpx;'><text>联系电话：</text><input type='number' bindinput="phoneInput" /></view>
+    <view class='applyinp' style='padding-left:187rpx;'><text>楼栋地址：</text><input type='text' bindinput="addressInput" /></view> -->
+    <!-- <view class='yyupimg'>
+      <view>备注图片(非必需）</view>
+      <view class='yyupimgbox'><image mode='widthFix' src="../../image/upimg.png"></image></view>
+    </view> -->
+    <!-- <view class='applyinp applybtn'><button bindtap='sureOrder'>确认订单</button></view> -->
+    <!-- <view class='applyinp applybtn'><button bindtap='yysucc'>确定</button></view>
+  </view>
+</view> -->
+
+<!-- 订单确认成功 -->
+<!-- <view class='Applyalertbox' hidden='{{lookHidden}}'>
+  <view class='Applyalert' bindtap='lookCancel'></view>
+  <view class='lookwrap'>
+    <navigator url='/pages/mine/serviceorderall/serviceorderall?type=2'><view class='applyinp applybtn'> <button>查看订单</button></view></navigator>
+    <view class='applyinp applybtn'> <button bindtap='yysucc'>支付({{serviceDetails.Price}})</button></view>
+  </view>
+</view> -->
+
+ <!-- 预约成功 -->
+<!-- <view class='Applyalertbox' hidden='{{succHidden}}'>
+  <view class='Applyalert' bindtap='succHiddenCancel'></view>
+  <view class='applywrap'>
+    <view class='succicon'><image mode='widthFix' src="../../image/succ.png"></image></view>
+    <view class='succtt'>预约成功</view>
+    <view class='succtbox'>
+      <view class='succtt succtleft'>服务状态：<text>等待派单</text><font class="succtips">将在1日内完成分派，请耐心等待</font></view>
+      <view class='succtt succtleft'>联系人：{{name}} {{phone}}
+      </view>
+      <view class='succtt succtleft'>详细地址： {{address}}</view>
+    </view>
+    <view class='applyinp applybtn btnclose'><button bindtap='succHiddenCancel'>关闭</button></view>
+  </view>
+</view> -->

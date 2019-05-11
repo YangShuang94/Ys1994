@@ -1,0 +1,41 @@
+<!-- pages/mine/setaddress/setaddress.wxml -->
+<view class='applywrap'>
+  <view class='applyinp'>
+    <text>收件人：</text>
+    <input type='text' value='{{name}}' bindinput='name' />
+  </view>
+  <view class='applyinp addressphone'>
+    <text>联系电话：</text>
+    <input type='number' maxlength='11' value='{{linemobile}}' bindinput='linemobile' />
+  </view>
+  <view class='applyinp addressCity'>
+    <text>城市：</text>
+    <view class="section">
+      <!-- 官方api三级城市联动 -->
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class='applyinp addressphone'>
+    <text>详细地址：</text>
+    <input type='text' value='{{address}}' bindinput='address' />
+  </view>
+  <view class='applyinp applybtn'>
+    <view class='radiomoren'>
+      <view wx:if="{{flag == 1}}">
+        <radio-group class="radio-group" bindchange="setAsDefault">
+          <view class='cardradiolist'>
+            <label class="radio">
+              <radio checked="{{isdefault}}" />
+              默认地址
+            </label>
+          </view>
+        </radio-group>
+        <view class='addressDel' bindtap='addressDel'>删除</view>
+      </view>
+    </view>
+    <button bindtap='sureadd' wx:if="{{flag == 0}}">确定新增</button>
+    <button bindtap='sureedit' wx:if="{{flag == 1}}">确定修改</button>
+  </view>
+</view>

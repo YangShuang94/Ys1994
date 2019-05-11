@@ -1,0 +1,77 @@
+<!-- 首页 -->
+<view class='in_top_logo'>
+  <image class='in_logo' mode='widthFix' src='{{listdata.OrgPic}}'></image>
+  <view class='in_top_address'><font hidden='{{merStoreName == ""}} ? true : false'><image mode='widthFix' src="../../image/dw.png"></image></font>{{merStoreName}}<text bindtap='choiceMerchant'>[切换]</text></view>
+</view>
+
+<view class="swiper_box">
+  <swiper class="swiper swiper-box" autoplay="true" interval="3000" indicator-dots="true"  duration="200" bindchange="swiperchange" circular="true">
+    <block wx:for="{{bannerImages}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item.ImgUrl}}" data-urls='{{item.url}}' bindtap='onUrlgo' class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- <view class='in_banner_box'><image mode='widthFix' src="../../image/in_banner.jpg"></image></view> -->
+
+<!-- <view class='in_img_tip'><image mode='widthFix' src="../../image/in_tip.png"></image></view> -->
+
+<!-- 家庭保洁 -->
+<view class='in_block_box' wx:for="{{listdata.Groups}}" wx:key="k" wx:for-item="v">
+  <view class='in_block_title'>
+    <view class='shop_main_tt_line'><text></text>{{v.Title}}</view>
+    <view class='in_more'>
+      <navigator url="/pages/servicenav/servicenav?CategoryId={{v.CategoryId}}&_title={{v.Title}}" hover-class="navigator-hover">
+        更多<text class='right_arrow'></text>
+      </navigator>
+    </view>
+    
+  </view>
+  <view class='in_block_wrap'>
+    <view class='in_block_list' wx:for="{{v.Items}}" wx:key="{{kv}}" wx:for-item="kv">
+      <navigator url="/pages/servicedetails/servicedetails?id={{kv.Id}}&_title={{kv.Title}}" hover-class="navigator-hover">
+        <view class='in_block_img'><image mode='aspectFill' src='{{kv.PicUrl}}'></image></view>
+        <view class='in_block_name'>{{kv.Title}}</view>
+        <view class='in_block_money' wx:if="{{kv.Price==0}}">免费</view>
+        <view class='in_block_money' wx:else="{{kv.Price>0}}">￥{{kv.Price}}<text class='goods_by'>上门费</text></view>
+        <!-- <view class='in_block_address'><image mode='widthFix' src='../../image/shop.png'></image>{{kv.ProviderName || "暂无"}}</view> -->
+      </navigator>
+    </view>
+    
+  </view>
+</view>
+<!-- 家庭保洁 -->
+
+<!-- 选择门店 -->
+<view class='choiceStore-wrap' hidden='{{merchantHidden}}'>
+  <view class='choicebackground'></view>
+  <view class='store-boxwrap'>
+
+    <view class='store-box'>
+      <scroll-view  scroll-y="true" style="height: 96%;margin-top:2%;">
+      <radio-group class="radio-group">
+        <view class='coll_top coll_list' wx:for="{{micdata}}" wx:key="{{index}}" wx:for-item="item" data-id='{{item.Id}}' data-mername="{{item.Name}}" bindtap="radioChange">
+          <label class="radio">
+            <view class='coll_top_left'> 
+              <view class='coll_img_box'>
+                <radio checked="{{item.ischecked}}" />
+              </view>
+              <view class='coll_text_box'>
+                <view class='coll_text_weight'>{{item.Name}}</view>
+                <view class='coll_text_tip'>地址：{{item.Address}}</view>
+              </view>
+            </view>
+            <view class='coll_top_right coll_text_right'>距您{{item.Distance}}米</view>
+          </label>
+        </view>
+      </radio-group> 
+      </scroll-view>
+    </view>
+    <image class="cancel" bindtap="hideModal" src="../../image/cancel02.png" bindtap='cancelChoiceStore'></image>
+  </view>
+
+</view>
+
+
+

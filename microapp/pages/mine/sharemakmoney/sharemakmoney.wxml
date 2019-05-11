@@ -1,0 +1,71 @@
+<!--pages/mine/sharemakmoney/sharemakmoney.wxml-->
+<view>
+  <image mode='widthFix' src="../../../image/zqbanner.png"></image>
+</view>
+
+<view class='share_nav_wrap'>
+  <view class='goods-tips-wrap'> 
+    <view class='goods-tips'><text>分享赚钱</text></view>
+  </view>
+
+  <view class='share_nav_box'>
+    <view class='share_nav_li'>
+      <view class='share_nav_icon'><image mode='widthFix' src="../../../image/zq_icon01.png"></image></view>
+      <view>申请加入</view>
+    </view>
+    <view class='share_nav_arrow_right'><image mode='widthFix' src="../../../image/arrow_right.png"></image></view>
+    <view class='share_nav_li'>
+      <view class='share_nav_icon share_nav_icon02'><image mode='widthFix' src="../../../image/zq_icon02.png"></image></view>
+      <view>分享好友</view>
+    </view>
+    <view class='share_nav_arrow_right'><image mode='widthFix' src="../../../image/arrow_right.png"></image></view>
+    <view class='share_nav_li'>
+      <view class='share_nav_icon share_nav_icon02'><image mode='widthFix' src="../../../image/zq_icon03.png"></image></view>
+      <view>好友购买</view>
+    </view>
+    <view class='share_nav_arrow_right'><image mode='widthFix' src="../../../image/arrow_right.png"></image></view>
+    <view class='share_nav_li'>
+      <view class='share_nav_icon'><image mode='widthFix' src="../../../image/zq_icon04.png"></image></view>
+      <view>收货奖励</view>
+    </view>
+  </view>
+</view>
+
+<!-- 详细规则 -->
+<view class='share_details_rule'>
+  <view class='shop_main_tt_line'><text></text>详细规则</view>
+  <view class='share_d_p'>
+    <view>1、龙湖集团1993年创建于重庆,发展于全国,业务涉及地产开发、商业运营、物业服务、长租公寓等领域。</view>
+    <view>2、龙湖集团1993年创建于重庆,发展于全国</view>
+    <view>3、龙湖集团1993年创建于重庆,发展于全国</view>
+  </view>
+</view>
+
+<view class='share_radio_wrap'>
+  <label class="checkbox ft-30">
+    <!-- <checkbox value='all' checked="{{selectAllStatus}}"/> -->
+    <radio checked="checked"></radio>
+    我已认真阅读并同意<text>《XXX关于分享赚钱协议》</text>的协议条款
+  </label>
+</view>
+
+<!-- footer bottom -->
+<view class="share_mk_btn_box">
+  <view bindtap="joinClick" class="share_mk_btn">申请加入</view>
+</view>
+
+
+<!-- 申请加入弹框 -->
+<view class='Applyalertbox' hidden='{{applyHidden}}'> 
+  <view class='Applyalert' bindtap='joinCancel'></view>
+  <view class='applywrap'>
+    <view class='applytitle'>申请加入</view>
+    <view class='applyinp' style='padding-left:110rpx;'><text>姓名：</text><input type='text' bindinput='name' placeholder='请输入姓名' /></view>
+    <view class='applyinp' style='padding-left:140rpx;'><text>身份证：</text><input type='text' bindinput='idcard' placeholder='请输入有效的身份证' /></view>
+    <view class='applyinp' style='padding-left:220rpx;'><text>银行账户姓名：</text><input type='text' bindinput='relname'  placeholder='请输入银行账户姓名'/></view>
+    <view class='applyinp' style='padding-left:140rpx;'><text>银行名：</text><input type='text'  bindinput='bankname'  placeholder='请输入银行名' /></view>
+    <view class='applyinp'><text>银行卡号：</text><input type='number' bindinput='banknumber'  placeholder='请输入银行卡号' /></view>
+    <view class='applyinp' style='padding-left:220rpx;'><text>银行卡开户行：</text><input type='text' bindinput='bankopenname'  placeholder='请输入银行卡开户行' /></view>
+    <view class='applyinp applybtn'><button bindtap='sureJoin'>确定</button></view>
+  </view>
+</view>

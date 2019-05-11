@@ -1,0 +1,41 @@
+<!--pages/login/register/register.wxml-->
+<view class='view-wrap'>
+  <view class='view-inp-box'>
+    <input type="text" placeholder="请输入手机号" placeholder-class="placeholder" bindinput="inputTitle" />
+  </view>
+  <view class='view-inp-box'>
+    <input type="text" placeholder="请输入密码" placeholder-class="placeholder" bindinput="inputTitle" />
+  </view>
+  <view class='view-inp-box'>
+    <input type="text" placeholder="请再次输入密码" placeholder-class="placeholder" bindinput="inputTitle" />
+  </view>
+  <view class='view-inp-box view-inp-code'>
+    <view class='view-code-left'>
+      <text>验证码</text>
+      <input type="text" placeholder="请输入验证码" placeholder-class="placeholder" bindinput="inputTitle" />
+    </view>
+    <button bindtap="">获取验证码</button>
+  </view>
+
+  <view class='share_radio_wrap'>
+    <label class="checkbox ft-30">
+      <checkbox value='all' checked="{{selectAllStatus}}"/>
+      我已认真阅读并同意xxx的协议条款
+    </label>
+  </view>
+
+  <button class='now-login' bindtap="save">立即登录</button>
+
+  <view class='view-other-login'>
+    <view class='vie-other-left'>
+      <navigator url="/pages/login/loginformsg/loginformsg?title=navigate" hover-class="navigator-hover">
+        使用短信登录
+      </navigator>
+    </view>
+    <view class='view-other-right'>
+      <navigator url="/pages/login/loginforpsd/loginforpsd?title=navigate" hover-class="navigator-hover">
+        已有账号，立即登录
+      </navigator>
+    </view>
+  </view>
+</view>

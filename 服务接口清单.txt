@@ -1,0 +1,136 @@
+﻿
+baseUrl: 'https://microapp-api.yunxishop.com/api?cmdid=' 
+
+/api?cmdid=localtion_list&version=10   城市数据接口
+
+index首页
+
+ 1.seHome 			获取首页服务数据列表
+ 2.product_mallinfo    		获取banner图
+ 3.merchant_store   		获取商户店铺列表
+
+
+mall商城 commoditydetails 商品详情页面
+
+ 1.goodsInfo			获取商品详情数据
+ 2.goods				获取商店列表
+ 3.add_cart			加入购物车
+ 4.add_count			购物车商品数量加
+ 5.cart_count			购物车总数
+
+servicedetails 服务详情页面
+ 1.sorder_create		预约服务
+ 2.sorder_pay			订单支付
+ 3.service_detail		服务详情
+
+servicenav 服务分类
+ 1.seList			服务列表
+
+shopcart 购物车
+ 1.rcvinf_getall			地址列表
+ 2.rcvinf_getdefault			获取默认地址
+ 3.cart_remove			移除购物车
+ 4.cart_info			我的购物车
+ 5.cart_addcount			增加数量
+ 6.re_count			减少数量
+ 7.rcvinf_add			添加地址
+
+mine 我的
+ 
+ address 收货地址页面
+   1.product_mallinfo		商品页头部banner
+
+ collection 收藏店铺页面
+   1.store_favorite		收藏店铺列表
+
+ nearbyshops 收藏店铺页面
+   1.store_nearby		周边商铺数据
+
+ orderall 我的订单页面
+   1.user_usercenterinfo 	个人中心信息
+   2.order_all			商品所有订单
+   3.order_inpayment    	待支付
+   4.order_processing   	处理中
+   5.order_completed	 	已完成   
+   6.order_pay		 	订单支付
+
+ ordercartpay 购物车支付页面？
+   1.order_pay			订单支付
+
+ orderdetails 订单详情页面
+   1.order_pay		 	订单支付
+
+ orderpay 订单支付页面
+
+   1.rcvinf_getall	 	地址列表
+   2.rcvinf_getdefault   	获取默认地址
+   3.order_pay		 	订单支付
+   4.rcvinf_add		 	添加地址
+
+ orderSerdetails 订单详情页面？
+
+   1.sorder_detail	 	服务订单详情
+   2.sorder_pay		 	订单支付
+   3.sorder_servicefeepay	服务费支付
+
+ serviceorder 工人服务订单页
+
+   1.task_info			工人订单新分配数
+   2.task_all		 	工人全部订单
+   3.task_pending	 	工人接待单
+   4.task_inprocess	 	工人处理中
+   5.task_completed	 	工人已完成
+
+ serviceorderall 全部服务订单?
+
+   1.user_usercenterinfo 	个人中心信息
+   2.sorder_all		 	服务所有订单
+   3.sorder_inpayment    	代付定金
+   4.sorder_inservice	 	服务中
+   5.sorder_completed	 	已完成
+   6.sorder_pay		 	订单支付
+   7.sorder_servicefeepay	服务费支付
+
+ setaddress 编辑新增地址页面
+
+   1.rcvinf_get			地址详情
+   2.rcvinf_add			增加地址
+   3.address_edit		地址编辑
+   4.address_setmr		设置默认地址
+   5.address_remove		地址删除
+
+ sharemakmoney 分享赚钱申请
+   1.daili			代理申请
+
+ sharemoney 分享赚钱
+
+   1.bankaccount_get		获取所有银行卡
+   2.ankaccount_bind		绑定银行卡
+   3.bankaccount_update		修改银行卡
+   4.commission_summary		账户详情
+   5.commission_list		账户流水
+   6.commission_withdraw	体现申请
+
+ shopbrief 店铺介绍
+
+   1.store_detail		店铺详情列表
+   2.store_addfavorite          收藏店铺
+   3.store_removefavorite	移除收藏
+
+ shopbrieflike 店铺简介？
+   
+   1.store_detail		店铺详情列表
+   2.store_removefavorite	移除收藏
+
+
+
+
+
+
+
+
+
+
+
+
+

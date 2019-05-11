@@ -1,0 +1,3 @@
+<!--pages/mine/haohuo/haohuo.wxml-->
+<view class='haohuo_icon'><image mode='widthFix' src="../../../image/huo.png"></image></view>
+<view class='haohuo'>好货加热线：18309158816</view>

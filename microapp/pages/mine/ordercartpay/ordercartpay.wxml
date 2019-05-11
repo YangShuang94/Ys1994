@@ -1,0 +1,57 @@
+<!--pages/mine/orderdetails/orderdetails.wxml-->
+<view><image mode='widthFix' src="../../../image/ordericon.png" class="order-tt-img" /></view>
+
+<view class='order-main-box'>
+  <view class='order-main-wrap'>
+
+    <view class='order-info' wx:for="{{goods.arrayinfo}}" wx:key="{{index}}">
+      <view class='order-img'><image mode="aspectFill" src='{{item.CoverImage}}'></image></view>
+      <text class='order-info-t'>{{item.Title}}</text>
+      <view class='order-info-main'>{{item.Color}} {{item.Version}} 数量：{{item.Count}}</view>
+      <view class='order-money'>￥{{item.Price}}<text class='order-yf' wx:if="{{item.ExpressPrice > 0}}">运费：￥{{item.ExpressPrice}}</text></view>
+    </view>
+
+    <view class='order-address-wrap'  bindtap='choiceAddress' style='padding-left:120rpx;'>
+      <view class='order-address'>
+        <view class="order-address-icon"><image mode='widthFix' src="../../../image/ordericon01.png"  /></view>
+        <view class='order-name'>{{goods.address.Name}}  {{goods.address.Tel}}</view>
+        <view class='order-address-s'>地址：{{goods.address.City}} {{goods.address.Address}}</view>
+      </view>
+    </view>
+    
+  </view>
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <!--<view class='order-address'>
+        <view class='order-num-t'>订单编号：<text>525663456464864564564</text></view>
+      </view>-->
+      <view class='order-address'>
+        <view class='order-g-time'>支付方式：<text>在线支付</text></view>
+      </view>
+      <!--<view class='order-address'>
+        <view class='order-g-time'>配送时间：<text>2019-04-02</text></view>
+      </view>-->
+    </view>
+  </view>
+
+  <view class='order-main-wrap'>
+    <view class='order-address-wrap order-number-wrap order-margin-top'>
+      <view class='order-address'>
+        <view class='order-num-t order-allmoney'>订单总额<text>￥{{goods.totalgPrice}}</text></view>
+        <view class='order-g-time order-allmoney'>运费<text>+￥{{goods.totalExpressPrice}}</text></view>
+      </view>
+      <view class='order-address'>
+        <view class='order-s-money'>共{{goods.totalgCount}}件 应付款<text>￥{{goods.totalePricedb}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='footer-btn'>
+  <view bindtap='back'>取消</view>
+  <view class='order-now-pay' bindtap="f_pay">立即支付</view>
+</view> 
+
+
+

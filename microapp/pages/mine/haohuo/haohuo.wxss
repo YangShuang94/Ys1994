@@ -1,0 +1,19 @@
+/* pages/mine/haohuo/haohuo.wxss */
+page{
+  background: #f5f8fa;
+}
+.haohuo_icon{
+  margin: 200rpx 0;
+  text-align: center;
+}
+.haohuo_icon image{
+  width: 300rpx;
+  margin: 0 auto;
+}
+.haohuo{
+  text-align: center;
+  font-size: 36rpx;
+  color: #3f3e3e;
+  font-weight: bold;
+  padding-top: 100rpx;
+}

@@ -1,0 +1,31 @@
+<!--pages/mine/collection/collection.wxml-->
+<view class='coll_top'>
+  <view class='coll_top_left'><image mode='widthFix' src='../../../image/coll_01.png'></image>收藏店铺</view>
+  <navigator url="/pages/mine/nearbyshops/nearbyshops?title=navigate" hover-class="navigator-hover">
+  <view class='coll_top_right coll_color'>周边店铺<text class='right_arrow'></text></view>
+  </navigator>
+</view>
+
+<view class='cont'>
+  <scroll-view scroll-y='true' lower-threshold="0">
+    
+    <view class='coll_top coll_list' wx:for="{{list}}" wx:key="{{index}}"> 
+      <navigator url="/pages/mine/shopbrief/shopbrief?id={{item.Id}}&_title={{item.Name}}" hover-class="navigator-hover">
+      <view class='coll_top_left'>
+        <view class='coll_img_box'><image mode='widthFix' src='{{item.LogoPic}}'></image></view>
+        <view class='coll_text_box'>
+          <view class='coll_text_weight'>{{item.Name}}</view> 
+          <view class='coll_text_tip'>{{item.Address}}</view>
+        </view>
+      </view>
+      <view class='coll_top_right coll_text_right'>距您{{item.Distance}}米<text class='right_arrow'></text></view>
+      </navigator>
+    </view>
+
+    <view class="loading complete" hidden="{{nLoadingComplete}}">
+      {{loadingsucctext}}
+    </view> 
+    
+  </scroll-view>
+</view>
+

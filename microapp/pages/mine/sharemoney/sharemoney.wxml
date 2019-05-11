@@ -1,0 +1,115 @@
+<!--pages/mine/collection/collection.wxml-->
+<view class='share_money_top'>
+
+  <view class='share_m_title'>我的现金奖励</view>
+  <view class='share_m_now'>
+    可提取(元)：<text>{{zhanghu.Balance}}</text>
+    <!-- <view class='share_now_get' bindtap='getMoneybindCard'>立即提取</view> -->
+    <view class='share_now_get' bindtap='getMoney'>立即提取</view>
+  </view>
+  <view class='display-flex-row share_block_flex'>
+    <view class='share_m_list'>
+      <view class='shzre_money'>{{zhanghu.Total}}</view>
+      <view>累计</view>
+    </view>
+    <view class='share_m_list'> 
+      <view class='shzre_money'>{{zhanghu.Gains}}</view>
+      <view>已提取</view>
+    </view>
+    <view class='share_m_list'>
+      <view class='shzre_money'>{{zhanghu.Pending}}</view>
+      <view>待入账</view>
+    </view>
+    <view class='share_m_list'>
+      <view class='shzre_money'>{{zhanghu.WithdrawDate}}</view>
+      <view>最近提取</view>
+    </view>
+  </view>
+ 
+</view>
+
+
+<view class='share_money_list share_money_top'>
+  <view class='share_list_title'>奖励明细</view>
+
+  <view class="table">
+    <view class="tr thead">
+      <view class="th">日期</view>
+      <view class="th">好友</view>
+      <view class="th thvr">购物金额</view>
+      <view class="th thvr">奖励金额</view>
+    </view>
+    <block>
+      <view class="tr" wx:for="{{listData}}" wx:key="{{index}}">
+        <view class="td">{{item.Date}}</view>
+        <view class="td">{{item.Phone}}</view>
+        <view class="td thvr">{{item.OrderAmount}}</view>
+        <view class="td thvr">{{item.CommissionAmount}}</view>
+      </view>
+    </block>
+  </view>
+
+</view>
+
+
+
+
+<!-- 提现 -->
+<view class='Applyalertbox' hidden='{{getMoneyHidden}}'>
+  <view class='Applyalert' bindtap='getMoneyCancel'></view>
+  <view class='applywrap'>
+    <view class='applytitle'>提现申请</view>
+    <view class='applyinp'><text>提现金额：</text>{{zhanghu.Balance}}元</view>
+    <view class='applyinp' style='padding-left:200rpx;'><text>说 明：提现申请提交后，我们将在2-3天内将提现金额转账到您绑定的银行卡</text></view>
+    <view class='applyinp applytwoBtn' bindtap='apply'><button>确 定</button></view>
+  </view>
+</view>
+
+<!-- 选择其他银行卡 -->
+<!-- <view class='Applyalertbox' hidden='{{otherBankCardHidden}}'>
+  <view class='Applyalert' bindtap='otherBankCardcancel'></view>
+  <view class='applywrap'>
+    <view class='applytitle'>选择银行卡<text class='addbankcard' bindtap='getMoneybindCard'>添加银行卡</text></view>
+    <view class='cardRadiobox'>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <view class='cardradiolist' wx:for="{{bankcard}}" wx:key="{{index}}">
+          <label class="radio">
+            <radio value="{{item.value}}" checked="{{item.checked}}" />
+            {{item.value}}
+          </label>
+        </view>
+      </radio-group> 
+    </view>
+    <view class='applyinp applybtn'><button bindtap='otherBankCardcancel'>确定</button></view>
+  </view>
+</view> -->
+
+<!-- 提现绑定银行卡弹框 -->
+<view class='Applyalertbox' hidden='{{applyHidden}}'>
+  <view class='Applyalert' bindtap='getMoneybindCardCancel'></view>
+  <view class='applywrap'>
+    <view class='applytitle'>请绑定提现银行卡</view>
+    <view class='applyinp'><text>持卡人：</text><input type='text' id="accountname" bindinput="fc"/></view>
+    <view class='applyinp' style='padding-left:140rpx;'><text>卡号：</text><input type='number' id="account" bindinput="fc"/></view>
+    <!-- <view class='applyinp' style='padding-left:200rpx;padding-right:200rpx;'>
+      <text>认证手机号：</text>
+      <input type='number' />
+      <button class='getcode' disabled='{{disabled}}' bindtap="getVerificationCode">{{time}}</button>
+    </view> -->
+    <view class='applyinp'><text>银行名称：</text><input type='text' id="bankname" bindinput="fc"/></view>
+    <view class='applyinp applybtn'><button bindtap='bank_bind'>确定</button></view>
+  </view>
+</view>
+
+<!-- 提现成功明细 -->
+<view class='Applyalertbox' hidden='{{succHidden}}'>
+  <view class='Applyalert' bindtap='succHiddenCancel'></view>
+  <view class='applywrap'>
+    <view class='succicon'><image mode='widthFix' src="../../../image/succ.png"></image></view>
+    <view class='succtt'>提现金额：<text>810.00元</text></view>
+    <view class='succtt'>预计3个工作日到账</view>
+    <view class='succtips'>本次申请日期：2019.02.25|下次可申请日期：2019.03.25</view>
+    <view class='applyinp applybtn'><button>确定</button></view>
+  </view>
+</view>
+

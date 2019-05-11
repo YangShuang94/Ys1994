@@ -1,0 +1,34 @@
+    "pages/index/index", 首页
+    "pages/mall/mall", 商城
+    "pages/shopcart/shopcart", 购物车
+    "pages/mine/mine", 我的
+
+    "pages/mall/commoditydetails/commoditydetails", 商品详情
+
+    "pages/mine/collection/collection", 收藏店铺
+    "pages/mine/nearbyshops/nearbyshops", 收藏店铺
+    "pages/mine/sharemoney/sharemoney", 分享赚钱
+    "pages/mine/shopbrief/shopbrief", 店铺介绍
+    "pages/mine/sharemakmoney/sharemakmoney", 分享赚钱申请
+    "pages/mine/orderall/orderall", 我的订单
+    "pages/mine/address/address",//收货地址
+    "pages/mine/setaddress/setaddress", //编辑新增地址
+    "pages/mine/haohuo/haohuo", //好货加热线
+
+    "pages/servicedetails/servicedetails", 服务详情
+    "pages/servicenav/servicenav", 服务分类
+
+    "pages/login/register/register", 注册
+    "pages/login/loginforpsd/loginforpsd", 密码登录
+    "pages/login/loginformsg/loginformsg", 验证码登录
+
+    "pages/shopcart/paysuccess/paysuccess", 支付成功
+
+
+新增
+pages/mine/serviceorder/serviceorder 工人服务订单页
+pages/mine/orderdetails/orderdetails   订单详情
+pages/mine/orderpay/orderpay 商品订单确定
+/pages/mine/orderall/orderall 商品订单
+/pages/mine/serviceorderall/serviceorderall 服务的订单
+/pages/mine/serviceshopcart/serviceshopcart 服务购物车
