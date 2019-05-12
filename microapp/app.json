@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/confirmpay/confirmpay",
     "pages/index/index",
     "pages/mall/mall",
     "pages/shopcart/shopcart",
@@ -29,7 +28,9 @@
     "pages/login/loginformsg/loginformsg",
     "pages/shopcart/paysuccess/paysuccess",
     "pages/logs/logs",
-    "pages/serviceshopcart/serviceshopcart"
+    "pages/serviceshopcart/serviceshopcart",
+    "pages/confirmpay/confirmpay"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -82,7 +82,7 @@
 
     <view class="opt-row">
       <text>备注：</text>
-      <input type='number' bindinput="nameInput"/>
+      <input type='text' bindinput="remarkInput"/>
     </view>
 
   </view>

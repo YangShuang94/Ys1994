@@ -33,14 +33,73 @@ Page({
       newaddressHidden: true, //新增地址显示隐藏
       region: ['广东省', '广州市', '海珠区'],
       customItem: '全部',
+      // 商品的productID
+      proID:'',
+      goodflag:true
         // city: ['广东省', '广州市', '海珠区']
   },
 
+  // chbChange:function(e){
+  //   // console.log(e.detail.value)
+  //   this.setData({
+  //     proID: e.detail.value[0]
+  //   })
+  //   // console.log(e.detail.value[0])
+  //   // console.log(this.data.proID)
+  //   // console.log(this.data.goodList)
+  //   var citycode = [];
+  //   var goodslist = this.data.goodList;
+  //   // console.log(goodslist)
+  //   // console.log(this.data.proID[0])
+  //   var n = this.data.proID
+  //   for (var i = 0; i < goodslist.length; i++) {
+  //     // console.log(goodslist[i])
+  //     // console.log(this.data.proID[0])
+  //     if (goodslist[i].ProductId == n) {
+  //       console.log(goodslist[i])
+  //       for (var j = 0; j < goodslist[i].ExpressDetail.length; j++) {
+  //         console.log(goodslist[i].ExpressDetail[j])
+  //         for (var k = 0; k < goodslist[i].ExpressDetail[j].Cities.length; k++) {
+  //           console.log(goodslist[i].ExpressDetail[j].Cities[k].City)
+  //           citycode.push(goodslist[i].ExpressDetail[j].Cities[k].City)
+  //         }
+  //       }
+  //     }
+
+  //   }
+  //   console.log(citycode.indexOf(this.data.choiceAddressinfo.CityCode))
+  //   for (var i = 0; i < goodslist.length; i++) {
+  //     // console.log(goodslist[i].goodflag)
+  //     if (goodslist[i].ProductId == this.data.proID){
+  //       if (citycode.indexOf(this.data.choiceAddressinfo.CityCode) == -1) {
+  //         console.log("没有匹配的值")
+  //         goodslist[i].goodflag = false;
+  //         // this.onLoad();
+  //         // this.setData({
+  //         //   goodflag: goodslist[i].goodflag,
+  //         //   // pid: e.detail.value[0]
+  //         // })
+  //         console.log(goodslist[i])
+  //       } else {
+  //         goodslist[i].goodflag = true;
+  //         // this.onLoad();
+  //         // this.setData({
+  //         //   goodflag: goodslist[i].goodflag,
+  //         //   // pid: e.detail.value[0]
+  //         // })
+  //       }
+  //     }
+      
+  //   }
+
+    
+  //   console.log(citycode)
+  //   // console.log(this.data.choiceAddressinfo.CityCode)
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
     var that = this;
 
     if (wx.getStorageSync('token').Token) {
@@ -48,7 +107,6 @@ Page({
       this.myCart(that);
       this.getaddressList() //地址列表
       this.rcvinf_getdefault() //默认地址
-
     } else {
       // this.isRgisterp()
     }
@@ -92,6 +150,7 @@ Page({
     }
 
   },
+
   // 官方api三级城市联动
   bindRegionChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -200,6 +259,7 @@ Page({
    * 计算商品总数
    */
   calculateTotal: function () {
+   
       var goodList = this.data.goodList;
       var totalCount = 0;
       var totalPrice = 0;
@@ -309,9 +369,6 @@ Page({
       });
       this.calculateTotal(); //总价计算
   },
-
-  
-
   /**
    * 我的购物车
    */
@@ -325,7 +382,7 @@ Page({
 
     app.Get(ut.api.my_cart).then((e) => {
       wx.hideLoading() //数据加载完hide加载提示
-      console.log(e);
+      // console.log(e);
 
         let sum = 0;
         let totalnum = 0;
@@ -355,6 +412,8 @@ Page({
         var yclist = []
         for (var i = 0; i < goodslist.length; i++) {
           var good = goodslist[i];
+          goodslist[i].goodflag = true
+          // console.log(goodslist['flag'])
           good['checked'] = true; //全选
 
           for(var j=0;j<good.ExpressDetail.length;j++){
@@ -363,8 +422,13 @@ Page({
               yslist.push(yxProvince.Cities[y].City)
             }
           }
+          yclist.push(yslist)
+          
         }
-        console.log(yslist);
+       
+        // console.log(yclist);
+        // console.log(yslist);
+        
         
         if(yslist.indexOf(this.data.choiceAddressinfo.CityCode) == -1){
           this.setData({
@@ -386,6 +450,7 @@ Page({
           yxCityCodeList: yslist
 
         })
+      console.log(this.data.goodList)
       // console.log(e.data.Items);
     }).catch((e) => {
       wx.hideLoading() //数据加载完hide加载提示
@@ -587,7 +652,7 @@ Page({
     }) //加载中
 
     app.Post(ut.api.address_add, data).then((res) => {
-      console.log(res);
+      // console.log(res);
       wx.hideLoading() //数据加载完hide加载提示
 
       if (res.Code == 0) {
@@ -595,7 +660,7 @@ Page({
           newaddressHidden: true,
           choiceAddressinfo: addressdata
         })
-        console.log(addressdata)
+        // console.log(addressdata)
         that.getaddressList() //地址列表
       } else {
         wx.showToast({

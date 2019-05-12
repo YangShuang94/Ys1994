@@ -53,8 +53,11 @@ Page({
         // console.log(res)
       if (res.Code == 0) {
         console.log(res.data)
+        var tolprice= this.data.num*res.data.Price;
         that.setData({//商品
-          serviceDetails: res.data
+          serviceDetails: res.data,
+          thisPrice: res.data.Price,
+          tolprice: tolprice
         });
       } else {
         wx.showToast({
@@ -97,6 +100,7 @@ Page({
     for (var i = 2; i <= 13; i++) {
       var date1 = new Date(date);
       date1.setDate(date.getDate() + i);
+
       var md = (date1.getMonth() + 1) + "-" + date1.getDate();
       monthDay.push(md);
     }
@@ -119,7 +123,7 @@ Page({
     data.multiArray[0] = monthDay;
     data.multiArray[1] = hours;
     data.multiArray[2] = minute;
-
+    
     this.setData(data);
   },
 
@@ -215,6 +219,8 @@ Page({
     } else {
       minuteIndex = 60;
     }
+    
+    // var date2 = new Date(date);
 
     if (minuteIndex == 60) {
       // 时
@@ -295,26 +301,40 @@ Page({
       var date1 = new Date(date);
       date1.setDate(date.getDate() + 1);
       monthDay = (date1.getMonth() + 1) + "月" + date1.getDate() + "日";
-
+      var month = (date1.getMonth() + 1)
+      var day = date1.getDate()
     } else {
       var month = monthDay.split("-")[0]; // 返回月
       var day = monthDay.split("-")[1]; // 返回日
       monthDay = month + "月" + day + "日";
     }
-    if(hours == 0){
-      hours = hours +"0"
+    console.log(date);
+    var year = date.getFullYear()
+     
+    if(month < 10){
+      month = "0" + month
+    }
+    if(day < 10){
+      day = "0" + day
+    }
+    if(hours < 10){
+      hours = "0" + hours
     }else{
       hours = hours
     }
-    if(minute == 0){
-      minute = minute +"0"
+    if(minute < 10){
+      minute = "0" + minute
     }else{
       minute = minute
-    }
+    }548
     var startDate = monthDay + " " + hours + ":" + minute;
+    var returnDate = year + "-" + month + "-" + day + " " + hours + ":" + minute;
     that.setData({
+      returnDate: returnDate,
       startDate: startDate
     })
+    console.log(that.data.returnDate);
+    
   },
 // 时间
 
@@ -332,6 +352,11 @@ Page({
   addressInput: function (e) {
     this.setData({
       address: e.detail.value
+    })
+  },
+  remarkInput:function(e){
+    this.setData({
+      Remark: e.detail.value
     })
   },
 
@@ -357,7 +382,8 @@ Page({
 		}
 		var minusStatus = num <= 1 ? 'disabled' : 'normal';
 		this.setData({
-			num: num,
+      num: num,
+      tolprice: num*this.data.thisPrice,
 			minusStatus: minusStatus
 		});
 	},
@@ -367,9 +393,11 @@ Page({
 		num++; 
 		var minusStatus = num < 1 ? 'disabled' : 'normal';
 		this.setData({
-			num: num,
+      num: num,
+      tolprice: num*this.data.thisPrice,
 			minusStatus: minusStatus
-		});
+    });
+    
 	},
 	/* 输入框事件 */
 	bindManual: function(e) {
@@ -406,47 +434,43 @@ Page({
     var that = this
     var serPrice = that.data.serviceDetails.Price
     console.log(that.data.serviceDetails)
-    var telRule = /^1[3|4|5|7|8|9]\d{9}$/
-    if (!that.data.name) {
-      wx.showToast({
-        title: "请输入联系人姓名",
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    if (!that.data.phone) { 
-      wx.showToast({
-        title: "请输入联系电话",
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    if (!telRule.test(that.data.phone)) {
-      wx.showToast({
-        title: "请输入正确的手机号",
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    if (!that.data.address) {
-      wx.showToast({
-        title: "请输入楼栋地址",
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    that.setData({
-      yyHidden: true,
-      lookHidden: false
-    });
+    // var telRule = /^1[3|4|5|7|8|9]\d{9}$/
+    // if (!that.data.name) {
+    //   wx.showToast({
+    //     title: "请输入联系人姓名",
+    //     icon: 'none',
+    //     duration: 1000,
+    //     mask: true
+    //   })
+    //   return false;
+    // }
+    // if (!that.data.phone) { 
+    //   wx.showToast({
+    //     title: "请输入联系电话",
+    //     icon: 'none',
+    //     duration: 1000,
+    //     mask: true
+    //   })
+    //   return false;
+    // }
+    // if (!telRule.test(that.data.phone)) {
+    //   wx.showToast({
+    //     title: "请输入正确的手机号",
+    //     icon: 'none',
+    //     duration: 1000,
+    //     mask: true
+    //   })
+    //   return false;
+    // }
+    // if (!that.data.address) {
+    //   wx.showToast({
+    //     title: "请输入楼栋地址",
+    //     icon: 'none',
+    //     duration: 1000,
+    //     mask: true
+    //   })
+    //   return false;
+    // }
     var address = {
       name: that.data.name,
       tel: that.data.phone,
@@ -456,8 +480,14 @@ Page({
       id: that.data.serviceDetails.Id,
       storeId: 2,
       count: 1,
-      address: JSON.stringify(address)
+      address: JSON.stringify(address),
+      subscribeDate: that.data.returnDate,
+      Remark: that.data.Remark
     }
+    console.log(data);
+    
+    console.log(that.data.Remark);
+    
     app.Post(ut.api.sorder_create, data).then((res) => {
       console.log(res)
       if (res.Code == 0) {
@@ -466,13 +496,18 @@ Page({
         that.setData({
           paydata : res.data
         })
-        console.log(res.data)
         if (serPrice == 0) { //服务价格为0直接预约成功
           
 
         } else { //服务价格不为0要先去支付服务费
+          var paydata = res.data;
+          var tolprice = that.data.tolprice
+          var title = that.data.serviceDetails.Title
           
-          that.orderPay(res.data)
+          wx.navigateTo({
+            url : '/pages/confirmpay/confirmpay?paydata='+paydata+'&tolprice='+tolprice+'&title='+title
+          })
+          // that.orderPay(res.data)
         }
       } else {
         wx.showToast({
@@ -493,49 +528,6 @@ Page({
     })
   },
 
-  /**
-   * 支付
-   */
-  orderPay: function (obj) {
-    var that = this
-    var data = {
-      orderid: obj
-    }
-    console.log(data)
-    app.Post(ut.api.sorder_pay, data).then((res) => {
-      console.log(res)
-      wx.requestPayment(
-        {
-          'timeStamp': res.data.TimeStamp,
-          'nonceStr': res.data.NonceStr,
-          'package': res.data.Package,
-          'signType': res.data.SignType,
-          'paySign': res.data.PaySign,
-          'success': function (res) {
-            console.log(res)
-            that.setData({
-              // yyHidden: true,
-              succHidden: false
-            });
-          },
-          'fail': function (res) {
-            console.log(res)
-            wx.navigateTo({
-              url:'/pages/mine/serviceorderall/serviceorderall?type=2'
-            })
-          },
-          'complete': function (res) { }
-        })
-    }).catch((error) => {
-      console.log(error);
-      wx.showToast({
-        title: error,
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-    })
-  },
   
 	hideBuyModal() {
 		// 隐藏遮罩层

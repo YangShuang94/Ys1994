@@ -29,7 +29,7 @@
     <!-- 上部分  -->
     <view class='section section-good'>
         <checkbox-group bindchange="checkboxChange">
-            <view class='good' wx:for='{{goodList}}' wx:for-item="good" wx:key="good.name">
+            <view class='good' wx:for='{{goodList}}'  wx:for-item="good" wx:key="good.name">
 
                 <!--第一个盒子  -->
                 <view class='good_title'>
@@ -39,9 +39,11 @@
                 <!-- 第二个盒子 -->
                 <view class='good_content'>
                     <view class='good_checkbox'>
-                        <label class="checkbox">
-                            <checkbox value="{{good.Id}}" checked="{{good.checked}}" />
+                    <checkbox-group  bindchange="chbChange">
+                       <label class="checkbox">
+                            <checkbox value="{{good.ProductId}}" checked="{{good.checked}}" />
                         </label>
+                    </checkbox-group>
                     </view>
                     <navigator url="/pages/mall/commoditydetails/commoditydetails?id={{good.ProductId}}" hover-class="address-hover">
                     <view class='good_img'>
@@ -63,8 +65,12 @@
                         </view>
                     </view>
                 </view>
+                <view wx:if="{{goodflag == true}}"></view>
+                <view wx:else="{{goodflag == flase}}" class='redcity'>该地址暂不支持配送</view>
             </view>
         </checkbox-group>
+        
+       
     </view>
 
     <!-- 底部  -->

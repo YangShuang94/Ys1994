@@ -34,6 +34,10 @@
             <view>￥{{v.FirstAmount}}</view>
             <view class='order-total'>x{{v.Count}}</view>
           </view>
+          <view class='remark' wx:if="{{v.UserMessage}}">备注： {{v.UserMessage}}</view>
+          <view class='remark' wx:else="{{!v.UserMessage}}"> </view>
+          <view class='doortime' wx:if="{{v.SubscribeDate}}"> 上门时间： {{v.SubscribeDate}}</view>
+          <view class='doortime' wx:else="{{!v.SubscribeDate}}"> </view>
         </view>
       </navigator>
       
